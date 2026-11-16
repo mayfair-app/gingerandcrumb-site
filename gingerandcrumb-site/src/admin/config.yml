@@ -102,6 +102,8 @@ collections:
           - { label: "Province", name: province, widget: string }
           - { label: "Areas you serve", name: service_areas, widget: list, field: { label: "Area", name: area, widget: string } }
           - { label: "Instagram handle (no @)", name: instagram, widget: string }
+          - { label: "Email for customers", name: email, widget: string, required: false }
+          - { label: "Website address", name: site_url, widget: string, required: false }
           - { label: "Big headline", name: hero_headline, widget: string }
           - { label: "Headline (pink part)", name: hero_highlight, widget: string }
           - { label: "Intro paragraph", name: hero_intro, widget: text }

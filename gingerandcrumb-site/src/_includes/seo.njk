@@ -11,6 +11,8 @@
   "address": {"@type": "PostalAddress", "addressLocality": {{ s.city | dump | safe }}, "addressRegion": "ON", "addressCountry": "CA"},
   "areaServed": {{ s.service_areas | dump | safe }},
   "servesCuisine": "Baked goods",
+  {% if s.site_url %}"url": {{ s.site_url | dump | safe }},{% endif %}
+  {% if s.email %}"email": {{ s.email | dump | safe }},{% endif %}
   "sameAs": ["https://www.instagram.com/{{ s.instagram }}/"]
 }
 </script>

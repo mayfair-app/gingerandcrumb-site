@@ -11,6 +11,8 @@
     "Aurora"
   ],
   "instagram": "gingerandcrumb_",
+  "email": "orders@gingerandcrumb.ca",
+  "site_url": "https://gingerandcrumb.ca",
   "formspree_id": "YOUR_FORM_ID",
   "hero_headline": "Small-batch bakes,",
   "hero_highlight": "from scratch.",
@@ -32,7 +34,7 @@
   ],
   "announcement": {
     "show": true,
-    "text": "Holiday Cookie Boxes: only 30 this year \u00b7 orders close Dec 12",
+    "text": "Holiday Cookie Boxes: only 30 this year · orders close Dec 12",
     "link_text": "Reserve yours"
   },
   "hero_photo": "",

@@ -58,6 +58,6 @@
       </fieldset>
       <div class="submit-row">
         <button class="btn" type="submit">Request my spot</button>
-        <p>I'll text you within 24 hours to confirm. Questions? DM <a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a> on Instagram.</p>
+        <p>I'll text you within 24 hours to confirm. Questions? {% if s.email %}Email <a href="mailto:{{ s.email }}">{{ s.email }}</a> or {% endif %}DM <a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a> on Instagram.</p>
       </div>
     </form>

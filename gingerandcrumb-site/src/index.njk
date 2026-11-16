@@ -301,7 +301,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
   <div class="wrap">
     <a class="logo" href="#top" style="justify-content:center"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
     <p>Small-batch home bakery in {{ loc }} · Serving {{ s.service_areas | join(", ") }}</p>
-    <div class="cols"><a href="#order">Order form</a><span>Pickup only · {{ s.city }}, ON</span><a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a></div>
+    <div class="cols"><a href="#order">Order form</a>{% if s.email %}<a href="mailto:{{ s.email }}">{{ s.email }}</a>{% endif %}<span>Pickup only · {{ s.city }}, ON</span><a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a></div>
     <p style="margin-top:16px;font-size:.82rem">© {{ build.year }} {{ s.business_name }}</p>
   </div>
 </footer>
