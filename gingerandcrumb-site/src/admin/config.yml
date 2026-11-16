@@ -126,7 +126,7 @@ collections:
       - label: "Reviews & testimonials"
         name: testimonials
         file: "gingerandcrumb-site/src/_data/testimonials.json"
-        description: "Only add real reviews from real customers, with their permission. The section stays hidden until at least one review is added."
+        description: "Only add real reviews from real customers, with their permission. Until a review is added, the section shows a \"Be one of our first reviews\" card."
         fields:
           - { label: "Show reviews section", name: show, widget: boolean, default: true }
           - { label: "Heading", name: title, widget: string, default: "Kind words" }

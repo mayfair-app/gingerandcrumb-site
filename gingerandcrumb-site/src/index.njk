@@ -170,6 +170,11 @@ textarea{min-height:90px;resize:vertical}
 .quote figcaption{display:flex;align-items:center;gap:10px;margin-top:auto;font-weight:800}
 .quote figcaption img{width:42px;height:42px;border-radius:50%;object-fit:cover}
 .quote figcaption span{display:block;font-weight:600;font-size:.85rem;color:var(--muted)}
+.first-review{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;max-width:780px;margin:0 auto;background:var(--pink-soft);border:2px dashed var(--cross);border-radius:20px;padding:24px}
+.first-review svg{width:84px;height:84px;background:#fff;border-radius:50%;padding:12px}
+.first-review h3{font-family:var(--display);font-size:1.6rem;margin-bottom:6px}
+.first-review p{color:var(--muted)}
+@media (max-width:560px){.first-review{grid-template-columns:1fr;text-align:center}.first-review svg{margin:0 auto}.first-review .ctas{justify-content:center!important}}
 .request-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:30px;align-items:start}
 .request-side{background:var(--pink-soft);border-radius:18px;padding:22px}
 .request-side h3{font-family:var(--display);font-size:1.5rem;margin-bottom:8px}
@@ -201,7 +206,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     <a class="logo" href="#top"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
     <ul>
       <li><a href="#menu">Menu</a></li>
-      {% if testimonials.show and testimonials.items.length %}<li><a href="#reviews">Reviews</a></li>{% endif %}
+      {% if testimonials.show %}<li><a href="#reviews">Reviews</a></li>{% endif %}
       <li><a href="#request">Special requests</a></li>
       {% if availability.show %}<li><a href="#availability">Availability</a></li>{% endif %}
       {% if holiday.show %}<li><a href="#special">{{ holiday.title | replace("The ", "") }}</a></li>{% endif %}
@@ -258,10 +263,11 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
   </div></div>
 </section>
 
-{% if testimonials.show and testimonials.items.length %}
+{% if testimonials.show %}
 <section id="reviews">
   <div class="wrap"><div class="paper sheet">
     <div class="title"><span class="k">Reviews</span><h2>{{ testimonials.title }}</h2>{% if testimonials.intro %}<p>{{ testimonials.intro }}</p>{% endif %}</div>
+    {% if testimonials.items.length %}
     <div class="quotes">
       {% for q in testimonials.items %}
       <figure class="quote">
@@ -270,6 +276,17 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
         <figcaption>{% if q.photo %}<img src="{{ q.photo }}" alt="">{% endif %}<div>{{ q.name }}{% if q.detail %}<span>{{ q.detail }}</span>{% endif %}</div></figcaption>
       </figure>
       {% endfor %}
+    </div>
+    {% else %}
+    <div class="first-review">
+      <svg viewBox="0 0 100 100" aria-hidden="true">{{ icons.heart | safe }}</svg>
+      <div>
+        <h3>Be one of our first reviews!</h3>
+        <p>Ginger &amp; Crumb is brand new, and every kind word means the world to a small bakery. Tried our cookies? I'd love to hear what you thought, and your review could be featured right here.</p>
+        <div class="ctas" style="justify-content:flex-start">{% if s.email %}<a class="btn" href="mailto:{{ s.email }}?subject=My%20Ginger%20%26%20Crumb%20review">Email your review</a>{% endif %}<a class="btn soft" href="https://www.instagram.com/{{ s.instagram }}/">DM us on Instagram</a></div>
+      </div>
+    </div>
+    {% endif %}
     </div>
   </div></div>
 </section>
