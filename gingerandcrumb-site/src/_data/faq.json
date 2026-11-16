@@ -2,7 +2,7 @@
   "questions": [
     {
       "q": "How far ahead should I order?",
-      "a": "One week for cookies, cupcakes and loaves. Two weeks for custom cakes. Holiday weeks fill fast, so earlier is better. Last-minute? Send the form anyway and I'll do my best."
+      "a": "One week for cookies and loaves. Two weeks for custom orders, cookie trays and special requests. Holiday weeks fill fast, so earlier is better. Last-minute? Send the form anyway and I'll do my best."
     },
     {
       "q": "Do you deliver?",
@@ -10,19 +10,23 @@
     },
     {
       "q": "How do I pay?",
-      "a": "Interac e-Transfer. Custom cakes need a 50% non-refundable deposit to book, with the balance due at pickup. Everything else is paid in full when booked."
+      "a": "Interac e-Transfer. Custom orders need a 50% non-refundable deposit to book, with the balance due at pickup. Everything else is paid in full when booked."
     },
     {
       "q": "Can you work around allergies?",
       "a": "Tell me about any allergies in your order. Gluten-free and egg-free options may be possible, but everything is made in a home kitchen that handles nuts, dairy, eggs, wheat and soy, so I can't guarantee anything is allergen-free."
     },
     {
-      "q": "How big a cake do I need?",
-      "a": "A 6-inch cake serves about 8 to 12, and an 8-inch serves about 16 to 24. Tiered cakes are quoted on request."
+      "q": "Can you make something that isn't on the menu?",
+      "a": "Often, yes. Use the special request form to tell me what you're looking for, whether it's a family favourite or a regional Italian treat, and I'll get back to you with a quote."
     },
     {
-      "q": "How should I transport my cake?",
-      "a": "Flat on the floor behind the passenger seat, with the A/C on in warm weather. Never on a seat. Keep it cool until it's time to serve."
+      "q": "How long do the cookies stay fresh?",
+      "a": "Most cookies stay fresh for 5 to 7 days in an airtight container at room temperature. Biscotti and pizzelle keep even longer. Filled cookies like bocconotti are best within 3 days."
+    },
+    {
+      "q": "Do you make cookie trays for events?",
+      "a": "Yes. Mixed Italian cookie trays are perfect for showers, weddings, holidays and office gatherings. Send a special request with your date and number of guests."
     }
   ]
 }

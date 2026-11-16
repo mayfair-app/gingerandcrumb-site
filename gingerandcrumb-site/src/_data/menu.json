@@ -30,29 +30,53 @@
       ]
     },
     {
-      "title": "Cupcakes & cakes",
+      "title": "Italian cookies",
       "items": [
         {
-          "name": "Cupcakes",
-          "description": "Vanilla, chocolate or seasonal, with whipped buttercream.",
-          "price": "6 for $30 \u00b7 12 for $55",
-          "icon": "cupcake",
+          "name": "Biscotti",
+          "description": "Twice-baked almond biscotti, crisp and made for dunking. Plain, chocolate-dipped or anise.",
+          "price": "$18 / dozen",
+          "icon": "bar",
           "photo": "",
           "available": true
         },
         {
-          "name": "Custom celebration cake",
-          "description": "Vintage piping, florals or your theme. 6-inch serves 8\u201312.",
-          "price": "from $85",
-          "icon": "cake",
+          "name": "Bocconotti",
+          "description": "Tender pastry cups filled with jam, chocolate or ricotta, dusted with icing sugar.",
+          "price": "$30 / dozen",
+          "icon": "pie",
           "photo": "",
           "available": true
         },
         {
-          "name": "Vintage heart cake",
-          "description": "6-inch heart with ruffles, bows and a message.",
-          "price": "from $75",
-          "icon": "heart",
+          "name": "Amaretti",
+          "description": "Soft, chewy almond cookies with a crackly sugar top.",
+          "price": "$24 / dozen",
+          "icon": "cookie",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Pizzelle",
+          "description": "Thin, crisp waffle cookies with a hint of anise or vanilla.",
+          "price": "$18 / dozen",
+          "icon": "cookie",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Anginetti",
+          "description": "Soft lemon knot cookies with a sweet lemon glaze and sprinkles.",
+          "price": "$20 / dozen",
+          "icon": "cookie",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Pignoli",
+          "description": "Almond paste cookies rolled in pine nuts. Naturally gluten-free.",
+          "price": "$32 / dozen",
+          "icon": "cookie",
           "photo": "",
           "available": true
         }
@@ -80,7 +104,7 @@
         {
           "name": "Fudgy brownies",
           "description": "Dark chocolate, ganache drizzle.",
-          "price": "6 for $24 \u00b7 12 for $45",
+          "price": "6 for $24 · 12 for $45",
           "icon": "bar",
           "photo": "",
           "available": true

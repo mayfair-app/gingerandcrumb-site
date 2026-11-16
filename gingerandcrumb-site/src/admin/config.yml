@@ -112,8 +112,10 @@ collections:
           - { label: "About me", name: about, widget: text }
           - { label: "Menu intro", name: menu_intro, widget: text }
           - { label: "Note under the menu", name: menu_note, widget: text }
-          - { label: "Order notice for cookies, cupcakes, loaves", name: lead_time_regular, widget: string }
-          - { label: "Order notice for custom cakes", name: lead_time_custom, widget: string }
+          - { label: "Special requests heading", name: request_title, widget: string, required: false }
+          - { label: "Special requests intro", name: request_intro, widget: text, required: false }
+          - { label: "Order notice for cookies and loaves", name: lead_time_regular, widget: string }
+          - { label: "Order notice for custom orders and special requests", name: lead_time_custom, widget: string }
           - { label: "Pickup time options", name: pickup_times, widget: list, field: { label: "Time", name: time, widget: string } }
           - { label: "Formspree form ID (set up once, don't change)", name: formspree_id, widget: string }
 

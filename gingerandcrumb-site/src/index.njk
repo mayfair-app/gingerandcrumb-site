@@ -158,6 +158,13 @@ textarea{min-height:90px;resize:vertical}
 .submit-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
 .submit-row p{margin:0;color:var(--muted);font-size:.92rem}
 
+.request-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:30px;align-items:start}
+.request-side{background:var(--pink-soft);border-radius:18px;padding:22px}
+.request-side h3{font-family:var(--display);font-size:1.5rem;margin-bottom:8px}
+.request-side ul{margin:10px 0 0;padding-left:20px;display:grid;gap:6px;color:var(--muted)}
+.request-form{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:0}
+.request-form .submit-row{grid-column:1/-1;justify-content:flex-start;text-align:left}
+@media (max-width:760px){.request-grid{grid-template-columns:1fr}}
 .faq{display:grid;gap:10px;max-width:780px;margin:0 auto}
 details{background:#fffafb;border:2px solid var(--line);border-radius:14px;padding:14px 18px}
 summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:12px}
@@ -182,6 +189,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     <a class="logo" href="#top"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
     <ul>
       <li><a href="#menu">Menu</a></li>
+      <li><a href="#request">Special requests</a></li>
       {% if availability.show %}<li><a href="#availability">Availability</a></li>{% endif %}
       {% if holiday.show %}<li><a href="#special">{{ holiday.title | replace("The ", "") }}</a></li>{% endif %}
       <li><a href="#faq">FAQ</a></li>
@@ -231,6 +239,36 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
   </div></div>
 </section>
 
+<section id="request">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Special requests</span><h2>{{ s.request_title or "Craving something not on the menu?" }}</h2><p>{{ s.request_intro }}</p></div>
+    <div class="request-grid">
+      <div class="request-side">
+        <h3>Ideas I love making</h3>
+        <ul>
+          <li>Family recipes and nonna's favourites</li>
+          <li>Regional Italian cookies and pastries</li>
+          <li>Mixed cookie trays for weddings, showers and holidays</li>
+          <li>Gluten-free or egg-free versions, when possible</li>
+        </ul>
+        <p style="margin:14px 0 0;font-size:.92rem;color:var(--muted)">Please send requests at least {{ s.lead_time_custom }} before you need them.</p>
+      </div>
+      <form class="request-form" action="https://formspree.io/f/{{ s.formspree_id }}" method="POST">
+        <input type="hidden" name="_subject" value="New special request: {{ s.business_name }}">
+        <input type="hidden" name="Request type" value="Special dessert request">
+        <div class="field"><label for="r-name">Full name</label><input id="r-name" name="Name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="r-phone">Phone number</label><input id="r-phone" name="Phone" type="tel" autocomplete="tel" required></div>
+        <div class="field full"><label for="r-email">Email</label><input id="r-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field full"><label for="r-dessert">What dessert would you like?</label><input id="r-dessert" name="Requested dessert" type="text" placeholder="e.g. sfogliatelle, cannoli, a family recipe" required></div>
+        <div class="field"><label for="r-qty">How many / how many guests?</label><input id="r-qty" name="Quantity or guests" type="text" placeholder="e.g. 3 dozen, 40 guests" required></div>
+        <div class="field"><label for="r-date">Date needed</label><input id="r-date" name="Date needed" type="date" required></div>
+        <div class="field full"><label for="r-details">Details <span class="hint">(flavours, occasion, allergies, budget, or a link to a photo or recipe)</span></label><textarea id="r-details" name="Request details"></textarea></div>
+        <div class="submit-row"><button class="btn" type="submit">Send my request</button><p>I'll reply within 48 hours{% if s.email %}, or email <a href="mailto:{{ s.email }}">{{ s.email }}</a>{% endif %}.</p></div>
+      </form>
+    </div>
+  </div></div>
+</section>
+
 {% if availability.show %}
 <section id="availability">
   <div class="wrap"><div class="paper sheet">
@@ -274,7 +312,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     <ol class="steps">
       <li><h3>Send your order</h3><p>Fill out the form below with what you'd like and your pickup date.</p></li>
       <li><h3>I'll confirm</h3><p>Within 24 hours I'll text you to confirm details and your total.</p></li>
-      <li><h3>Pay to book</h3><p>Interac e-Transfer: 50% deposit for custom cakes, full payment for everything else.</p></li>
+      <li><h3>Pay to book</h3><p>Interac e-Transfer: 50% deposit for custom orders, full payment for everything else.</p></li>
       <li><h3>Pick it up</h3><p>Pickup in {{ s.city }}. The address is sent once you're booked.</p></li>
     </ol>
   </div></div>
@@ -283,7 +321,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
 <section id="order">
   <div class="wrap"><div class="paper scallop sheet">
     <div class="title"><span class="k">Order form</span><h2>Place your order</h2></div>
-    <p class="lead">Order at least <b>{{ s.lead_time_regular }}</b> ahead for cookies, cupcakes and loaves, and <b>{{ s.lead_time_custom }}</b> ahead for custom cakes. Your order is booked once I confirm it and payment is received.</p>
+    <p class="lead">Order at least <b>{{ s.lead_time_regular }}</b> ahead for cookies and loaves, and <b>{{ s.lead_time_custom }}</b> ahead for custom orders and cookie trays. Your order is booked once I confirm it and payment is received.</p>
     {% if availability.show %}<p class="cap-note"><span aria-hidden="true">♥</span><span>I take about <b>{{ availability.orders_per_week }} orders a week</b>, first-come, first-served. <a href="#availability">Check availability</a> before picking a date.</span></p>{% endif %}
 {% include "order-form.njk" %}
   </div></div>
