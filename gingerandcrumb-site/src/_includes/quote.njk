@@ -1,0 +1,5 @@
+<figure class="quote">
+        {% if q.stars %}<div class="stars" aria-label="{{ q.stars }} out of 5 stars">{% for i in range(0, q.stars) %}★{% endfor %}</div>{% endif %}
+        <blockquote><p style="margin:0">{{ q.quote }}</p></blockquote>
+        <figcaption>{% if q.photo %}<img src="{{ q.photo }}" alt="">{% endif %}<div>{{ q.name }}{% if q.detail %}<span>{{ q.detail }}</span>{% endif %}</div></figcaption>
+      </figure>

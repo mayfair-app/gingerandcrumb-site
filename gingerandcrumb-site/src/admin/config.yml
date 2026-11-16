@@ -131,6 +131,7 @@ collections:
           - { label: "Show reviews section", name: show, widget: boolean, default: true }
           - { label: "Heading", name: title, widget: string, default: "Kind words" }
           - { label: "Intro", name: intro, widget: string, required: false }
+          - { label: "How many to show before \"Read more\"", name: featured, widget: number, value_type: int, min: 1, default: 6 }
           - label: "Reviews"
             name: items
             widget: list

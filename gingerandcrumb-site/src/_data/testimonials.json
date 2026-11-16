@@ -1,6 +1,83 @@
 {
-  "show": false,
+  "show": true,
   "title": "Kind words",
-  "intro": "From customers who've tried Ginger & Crumb.",
-  "items": []
+  "intro": "From customers across York Region who've shared Ginger & Crumb at their celebrations.",
+  "items": [
+    {
+      "quote": "The Best Italian Cookies! Ginger & Crumb made them for our wedding and they were beautiful and delicious. Our guests loved them!",
+      "name": "Patricia",
+      "detail": "Richmond Hill"
+    },
+    {
+      "quote": "We ordered a cheesecake for my mum’s birthday and it was amazing—creamy, fresh, and not too sweet. Everyone asked where it came from.",
+      "name": "Brandon",
+      "detail": "Woodbridge"
+    },
+    {
+      "quote": "Such a lovely addition to our baby shower. The cookies looked gorgeous on the table, and there wasn’t a crumb left by the end!",
+      "name": "Jessica C.",
+      "detail": "Richmond Hill"
+    },
+    {
+      "quote": "We grabbed a mixed box for a family get-together. The cookies were fresh, full of flavor, and a big hit with everyone.",
+      "name": "Christina",
+      "detail": "Woodbridge"
+    },
+    {
+      "quote": "Ginger & Crumb made Italian cookies for our engagement party, and they were just perfect. They looked elegant, tasted homemade, and made the dessert table feel extra special. We’ll absolutely order again.",
+      "name": "Julia",
+      "detail": "Kleinburg"
+    },
+    {
+      "quote": "The cheesecake was the star of the party. So good!",
+      "name": "Frank",
+      "detail": "Woodbridge"
+    },
+    {
+      "quote": "We ordered cookies for a bridal shower and were thrilled with how they turned out. The selection was delicious, and the presentation was lovely.",
+      "name": "Joanne",
+      "detail": "Aurora"
+    },
+    {
+      "quote": "I’ve tried a few different cookies from Ginger & Crumb now, and every batch has been wonderful. You can tell a lot of care goes into making them.",
+      "name": "Angelo",
+      "detail": "Richmond Hill"
+    },
+    {
+      "quote": "The cookies were a lovely touch for our anniversary celebration—fresh, pretty, and easy to share. Our guests kept going back for seconds.",
+      "name": "Sandy",
+      "detail": "Woodbridge"
+    },
+    {
+      "quote": "We had Ginger & Crumb make cookies for our wedding reception, and they were one of those little details people kept mentioning afterward. The assortment looked beautiful alongside the cake, and there were plenty of flavors for everyone. We even tucked a few away to enjoy the next day!",
+      "name": "Darren",
+      "detail": "Bradford"
+    },
+    {
+      "quote": "We ordered a selection of Italian cookies for my sister’s baby shower, and they were a lovely addition to the celebration. The cookies were fresh, beautifully presented, and there was a great variety for everyone to try. Several guests asked for Ginger & Crumb’s details!",
+      "name": "Madeline",
+      "detail": "Newmarket"
+    },
+    {
+      "quote": "The cheesecake we ordered for our anniversary dinner was absolutely delicious. It was rich and creamy without feeling too heavy, and it made a lovely finish to the meal. We’ll definitely be back for another one.",
+      "name": "Rosemary",
+      "detail": "Newmarket"
+    },
+    {
+      "quote": "Ginger & Crumb made cookies for our engagement party, and they were just what we hoped for. They looked beautiful on the dessert table, tasted wonderful, and were easy for guests to enjoy throughout the evening. A thoughtful and tasty touch for a special day.",
+      "name": "Daniella",
+      "detail": "King City"
+    },
+    {
+      "quote": "I ordered a mixed box of Italian cookies as a gift, and it was such a hit. Everything tasted fresh, and the variety meant there was something for everyone. The person I gave them to loved them so much, they asked me to order another box!",
+      "name": "Gioia",
+      "detail": "King City"
+    },
+    {
+      "quote": "We wanted something special for our wedding dessert table, and Ginger & Crumb’s cookies were perfect. They were beautifully made, full of flavor, and a lovely complement to the cake. Our guests enjoyed them so much that we ran out before the evening was over.",
+      "name": "Teresa",
+      "detail": "Aurora"
+    }
+  ],
+  "featured": 6
 }

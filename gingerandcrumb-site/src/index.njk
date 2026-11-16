@@ -175,6 +175,12 @@ textarea{min-height:90px;resize:vertical}
 .first-review h3{font-family:var(--display);font-size:1.6rem;margin-bottom:6px}
 .first-review p{color:var(--muted)}
 @media (max-width:560px){.first-review{grid-template-columns:1fr;text-align:center}.first-review svg{margin:0 auto}.first-review .ctas{justify-content:center!important}}
+.more-reviews{margin-top:18px;background:transparent;border:0;padding:0;text-align:center}
+.more-reviews > summary{display:inline-flex;justify-content:center;gap:8px;background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;font-weight:800}
+.more-reviews > summary::after{content:"+";color:var(--butter)}
+.more-reviews[open] > summary::after{content:"−"}
+.more-reviews[open] > summary{margin-bottom:18px}
+.more-reviews .quotes{text-align:left}
 .request-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:30px;align-items:start}
 .request-side{background:var(--pink-soft);border-radius:18px;padding:22px}
 .request-side h3{font-family:var(--display);font-size:1.5rem;margin-bottom:8px}
@@ -268,15 +274,18 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
   <div class="wrap"><div class="paper sheet">
     <div class="title"><span class="k">Reviews</span><h2>{{ testimonials.title }}</h2>{% if testimonials.intro %}<p>{{ testimonials.intro }}</p>{% endif %}</div>
     {% if testimonials.items.length %}
+    {%- set feat = testimonials.featured or 6 -%}
     <div class="quotes">
-      {% for q in testimonials.items %}
-      <figure class="quote">
-        {% if q.stars %}<div class="stars" aria-label="{{ q.stars }} out of 5 stars">{% for i in range(0, q.stars) %}★{% endfor %}</div>{% endif %}
-        <blockquote><p style="margin:0">{{ q.quote }}</p></blockquote>
-        <figcaption>{% if q.photo %}<img src="{{ q.photo }}" alt="">{% endif %}<div>{{ q.name }}{% if q.detail %}<span>{{ q.detail }}</span>{% endif %}</div></figcaption>
-      </figure>
-      {% endfor %}
+      {% for q in testimonials.items %}{% if loop.index <= feat %}{% include "quote.njk" %}{% endif %}{% endfor %}
     </div>
+    {% if testimonials.items.length > feat %}
+    <details class="more-reviews">
+      <summary>Read {{ testimonials.items.length - feat }} more reviews</summary>
+      <div class="quotes">
+        {% for q in testimonials.items %}{% if loop.index > feat %}{% include "quote.njk" %}{% endif %}{% endfor %}
+      </div>
+    </details>
+    {% endif %}
     {% else %}
     <div class="first-review">
       <svg viewBox="0 0 100 100" aria-hidden="true">{{ icons.heart | safe }}</svg>
