@@ -1,5 +1,4 @@
 # Ginger & Crumb editing panel (Decap CMS)
-# STEP: replace YOUR-GITHUB-USERNAME below with the GitHub account that owns the repository.
 backend:
   name: github
   repo: mayfair-app/gingerandcrumb-site
@@ -7,7 +6,7 @@ backend:
   commit_messages:
     update: "Website update: {{slug}}"
 
-media_folder: "src/images/uploads"
+media_folder: "gingerandcrumb-site/src/images/uploads"
 public_folder: "/images/uploads"
 locale: en
 
@@ -19,7 +18,7 @@ collections:
 
       - label: "Weekly availability (update weekly)"
         name: availability
-        file: "src/_data/availability.json"
+        file: "gingerandcrumb-site/src/_data/availability.json"
         description: "Change 'spots left' as orders come in. 0 = Fully booked, 1–3 = 'Only X spots left', 4+ = Booking now. Remove past weeks and add new ones at the bottom."
         fields:
           - { label: "Show availability section", name: show, widget: boolean, default: true }
@@ -35,7 +34,7 @@ collections:
 
       - label: "Menu & prices"
         name: menu
-        file: "src/_data/menu.json"
+        file: "gingerandcrumb-site/src/_data/menu.json"
         description: "Add, remove or reorder items. Turn off 'Available' to show an item as not available and remove it from the order form."
         fields:
           - label: "Menu sections"
@@ -58,7 +57,7 @@ collections:
 
       - label: "Holiday / seasonal special"
         name: holiday
-        file: "src/_data/holiday.json"
+        file: "gingerandcrumb-site/src/_data/holiday.json"
         description: "Use this for limited drops: Holiday Cookie Box, Valentine's heart cakes, Easter, etc. Update 'Claimed' as orders come in."
         fields:
           - { label: "Show this special", name: show, widget: boolean, default: true }
@@ -74,7 +73,7 @@ collections:
 
       - label: "Order deadlines"
         name: deadlines
-        file: "src/_data/deadlines.json"
+        file: "gingerandcrumb-site/src/_data/deadlines.json"
         fields:
           - { label: "Show deadlines", name: show, widget: boolean, default: true }
           - label: "Deadlines"
@@ -87,7 +86,7 @@ collections:
 
       - label: "Business details & page text"
         name: settings
-        file: "src/_data/settings.json"
+        file: "gingerandcrumb-site/src/_data/settings.json"
         fields:
           - label: "Top banner"
             name: announcement
@@ -118,7 +117,7 @@ collections:
 
       - label: "FAQ"
         name: faq
-        file: "src/_data/faq.json"
+        file: "gingerandcrumb-site/src/_data/faq.json"
         fields:
           - label: "Questions"
             name: questions
