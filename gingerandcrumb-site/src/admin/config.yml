@@ -108,6 +108,13 @@ collections:
           - { label: "Headline (pink part)", name: hero_highlight, widget: string }
           - { label: "Intro paragraph", name: hero_intro, widget: text }
           - { label: "Main photo (optional)", name: hero_photo, widget: image, required: false }
+          - label: "Trust bar (strip under the top section)"
+            name: trust_items
+            widget: list
+            summary: "{{fields.text}}"
+            fields:
+              - { label: "Text", name: text, widget: string }
+              - { label: "Drawing", name: icon, widget: select, default: "heart", options: ["heart", "cookie", "ginger", "cupcake", "cake", "loaf", "pie", "bar", "box"] }
           - { label: "Little badges under the intro", name: hero_badges, widget: list, field: { label: "Badge", name: badge, widget: string } }
           - { label: "About me", name: about, widget: text }
           - { label: "Menu intro", name: menu_intro, widget: text }
@@ -118,6 +125,25 @@ collections:
           - { label: "Order notice for custom orders and special requests", name: lead_time_custom, widget: string }
           - { label: "Pickup time options", name: pickup_times, widget: list, field: { label: "Time", name: time, widget: string } }
           - { label: "Formspree form ID (set up once, don't change)", name: formspree_id, widget: string }
+
+      - label: "Reviews & testimonials"
+        name: testimonials
+        file: "gingerandcrumb-site/src/_data/testimonials.json"
+        description: "Only add real reviews from real customers, with their permission. The section stays hidden until at least one review is added."
+        fields:
+          - { label: "Show reviews section", name: show, widget: boolean, default: true }
+          - { label: "Heading", name: title, widget: string, default: "Kind words" }
+          - { label: "Intro", name: intro, widget: string, required: false }
+          - label: "Reviews"
+            name: items
+            widget: list
+            summary: "{{fields.name}}: {{fields.quote}}"
+            fields:
+              - { label: "What they said", name: quote, widget: text }
+              - { label: "Name (e.g. Sarah M.)", name: name, widget: string }
+              - { label: "Detail (e.g. Christmas cookie tray, Richmond Hill)", name: detail, widget: string, required: false }
+              - { label: "Stars (only if they gave a rating)", name: stars, widget: number, value_type: int, min: 1, max: 5, required: false }
+              - { label: "Photo (optional, only with permission)", name: photo, widget: image, required: false }
 
       - label: "FAQ"
         name: faq

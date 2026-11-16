@@ -158,6 +158,18 @@ textarea{min-height:90px;resize:vertical}
 .submit-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
 .submit-row p{margin:0;color:var(--muted);font-size:.92rem}
 
+.trust{background:var(--ink);color:#fff}
+.trust ul{list-style:none;margin:0 auto;padding:14px 18px;max-width:1060px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px}
+.trust li{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem}
+.trust svg{width:26px;height:26px;background:#fff;border-radius:50%;padding:3px;flex:0 0 auto}
+.quotes{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.quote{background:#fffaf9;border:2px solid var(--line);border-radius:18px;padding:22px;margin:0;position:relative;display:flex;flex-direction:column;gap:12px}
+.quote::before{content:"\201C";font-family:var(--display);font-size:4rem;line-height:.6;color:var(--cross);height:22px}
+.quote blockquote{margin:0;font-size:1.02rem}
+.quote .stars{color:var(--coral);letter-spacing:2px;font-size:1rem}
+.quote figcaption{display:flex;align-items:center;gap:10px;margin-top:auto;font-weight:800}
+.quote figcaption img{width:42px;height:42px;border-radius:50%;object-fit:cover}
+.quote figcaption span{display:block;font-weight:600;font-size:.85rem;color:var(--muted)}
 .request-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:30px;align-items:start}
 .request-side{background:var(--pink-soft);border-radius:18px;padding:22px}
 .request-side h3{font-family:var(--display);font-size:1.5rem;margin-bottom:8px}
@@ -189,6 +201,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     <a class="logo" href="#top"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
     <ul>
       <li><a href="#menu">Menu</a></li>
+      {% if testimonials.show and testimonials.items.length %}<li><a href="#reviews">Reviews</a></li>{% endif %}
       <li><a href="#request">Special requests</a></li>
       {% if availability.show %}<li><a href="#availability">Availability</a></li>{% endif %}
       {% if holiday.show %}<li><a href="#special">{{ holiday.title | replace("The ", "") }}</a></li>{% endif %}
@@ -211,6 +224,12 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     </div>
   </div>
 </header>
+
+{% if s.trust_items and s.trust_items.length %}
+<section class="trust" aria-label="Why Ginger &amp; Crumb" style="padding:0">
+  <ul>{% for it in s.trust_items %}<li><svg viewBox="0 0 100 100" aria-hidden="true">{{ icons[it.icon or "heart"] | safe }}</svg>{{ it.text }}</li>{% endfor %}</ul>
+</section>
+{% endif %}
 
 <section class="about" aria-label="About" style="padding-top:60px">
   <div class="wrap"><div class="paper sheet">
@@ -238,6 +257,23 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
     <p class="note">{{ s.menu_note }}</p>
   </div></div>
 </section>
+
+{% if testimonials.show and testimonials.items.length %}
+<section id="reviews">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Reviews</span><h2>{{ testimonials.title }}</h2>{% if testimonials.intro %}<p>{{ testimonials.intro }}</p>{% endif %}</div>
+    <div class="quotes">
+      {% for q in testimonials.items %}
+      <figure class="quote">
+        {% if q.stars %}<div class="stars" aria-label="{{ q.stars }} out of 5 stars">{% for i in range(0, q.stars) %}★{% endfor %}</div>{% endif %}
+        <blockquote><p style="margin:0">{{ q.quote }}</p></blockquote>
+        <figcaption>{% if q.photo %}<img src="{{ q.photo }}" alt="">{% endif %}<div>{{ q.name }}{% if q.detail %}<span>{{ q.detail }}</span>{% endif %}</div></figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div></div>
+</section>
+{% endif %}
 
 <section id="request">
   <div class="wrap"><div class="paper sheet">
