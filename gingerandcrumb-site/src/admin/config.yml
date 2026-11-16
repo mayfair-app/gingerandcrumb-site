@@ -2,7 +2,7 @@
 # STEP: replace YOUR-GITHUB-USERNAME below with the GitHub account that owns the repository.
 backend:
   name: github
-  repo: YOUR-GITHUB-USERNAME/gingerandcrumb-site
+  repo: mayfair-app/gingerandcrumb-site
   branch: main
   commit_messages:
     update: "Website update: {{slug}}"
