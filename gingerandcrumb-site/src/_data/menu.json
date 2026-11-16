@@ -83,6 +83,35 @@
       ]
     },
     {
+      "title": "Cheesecakes",
+      "items": [
+        {
+          "name": "Classic cheesecake",
+          "description": "Creamy, rich and not too sweet, on a buttery graham crust. Plain or with a fruit topping.",
+          "price": "6\" $45 · 9\" $70",
+          "icon": "cake",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Italian ricotta cheesecake",
+          "description": "Light and fluffy, made with ricotta, a hint of lemon and vanilla.",
+          "price": "6\" $45 · 9\" $70",
+          "icon": "cake",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Seasonal cheesecake",
+          "description": "A rotating flavour, like pumpkin spice, chocolate or berry. Ask what's on now.",
+          "price": "6\" $50 · 9\" $75",
+          "icon": "cake",
+          "photo": "",
+          "available": true
+        }
+      ]
+    },
+    {
       "title": "Loaves & bars",
       "items": [
         {

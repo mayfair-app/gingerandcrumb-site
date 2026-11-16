@@ -1,13 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ s.business_name }} | Home Bakery in {{ loc }}</title>
-<meta name="description" content="{{ s.business_name }} is a small-batch home bakery in {{ loc }}. Classic and Italian cookies, biscotti, bocconotti and loaves, baked from scratch to order. Pickup only.">
+<meta name="description" content="{{ s.business_name }} is a small-batch home bakery in {{ loc }}. Classic and Italian cookies, biscotti, bocconotti, cheesecakes and loaves, baked from scratch to order. Pickup only.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Bakery",
   "name": {{ s.business_name | dump | safe }},
-  "description": "Small-batch home bakery. Classic and Italian cookies, biscotti, bocconotti and loaves baked from scratch to order.",
+  "description": "Small-batch home bakery. Classic and Italian cookies, biscotti, bocconotti, cheesecakes and loaves baked from scratch to order.",
   "address": {"@type": "PostalAddress", "addressLocality": {{ s.city | dump | safe }}, "addressRegion": "ON", "addressCountry": "CA"},
   "areaServed": {{ s.service_areas | dump | safe }},
   "servesCuisine": "Baked goods",
