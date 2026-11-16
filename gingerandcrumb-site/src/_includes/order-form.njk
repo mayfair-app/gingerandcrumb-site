@@ -1,0 +1,63 @@
+    <form action="https://formspree.io/f/{{ s.formspree_id }}" method="POST">
+      <input type="hidden" name="_subject" value="New {{ s.business_name }} order">
+      <fieldset>
+        <legend>Your details</legend>
+        <div class="field"><label for="name">Full name</label><input id="name" name="Name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="phone">Phone number <span class="hint">(for texting about your order)</span></label><input id="phone" name="Phone" type="tel" autocomplete="tel" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="ig">Instagram handle <span class="hint">(optional)</span></label><input id="ig" name="Instagram" type="text" placeholder="@yourhandle"></div>
+      </fieldset>
+      <fieldset>
+        <legend>Your order</legend>
+        <div class="field full">
+          <span class="label" id="what-label">What would you like?</span>
+          <div class="choices" role="group" aria-labelledby="what-label">
+            {% for g in menu.groups %}{% for it in g.items %}{% if it.available %}
+            <label><input type="checkbox" name="Items" value="{{ it.name }}"> {{ it.name }}</label>
+            {% endif %}{% endfor %}{% endfor %}
+            {% if holiday.show and holiday.add_to_order_form and holiday.claimed < holiday.total %}
+            <label><input type="checkbox" name="Items" value="{{ holiday.title }}"> {{ holiday.title }}</label>
+            {% endif %}
+          </div>
+        </div>
+        <div class="field"><label for="qty">Quantity / size</label><input id="qty" name="Quantity" type="text" placeholder="e.g. 2 dozen, 12 cupcakes, 6-inch cake" required></div>
+        <div class="field"><label for="flavour">Flavour(s)</label><input id="flavour" name="Flavours" type="text" placeholder="e.g. chocolate with strawberry filling" required></div>
+        <div class="field"><label for="occasion">Occasion</label>
+          <select id="occasion" name="Occasion">
+            <option value="">Choose one (optional)</option>
+            <option>Birthday</option><option>Baby or bridal shower</option><option>Holiday</option><option>Gift</option><option>Just because</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field full"><label for="design">Design details <span class="hint">(colours, theme, writing on the cake, inspiration links; you can also DM photos to @{{ s.instagram }})</span></label><textarea id="design" name="Design details"></textarea></div>
+        <div class="field full"><label for="allergies">Allergies or dietary needs <span class="hint">(write "None" if none)</span></label><input id="allergies" name="Allergies" type="text" required></div>
+      </fieldset>
+      <fieldset>
+        <legend>Pickup &amp; payment</legend>
+        <div class="field"><label for="date">Pickup date</label><input id="date" name="Pickup date" type="date" required></div>
+        <div class="field"><label for="time">Pickup time</label>
+          <select id="time" name="Pickup time" required>
+            <option value="">Choose a time</option>
+            {% for t in s.pickup_times %}<option>{{ t }}</option>{% endfor %}
+          </select>
+        </div>
+        <div class="field"><label for="pay">How will you pay?</label>
+          <select id="pay" name="Payment" required>
+            <option value="">Choose one</option>
+            <option>Interac e-Transfer</option><option>Cash at pickup (balance only)</option>
+          </select>
+        </div>
+        <div class="field"><label for="heard">How did you hear about us?</label>
+          <select id="heard" name="Heard about us">
+            <option value="">Choose one (optional)</option>
+            <option>Instagram</option><option>Friend or family</option><option>Market or event</option><option>Facebook</option><option>Google</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label class="agree" for="terms"><input id="terms" name="Agreed to terms" type="checkbox" value="Yes" required> I understand custom cakes need a 50% non-refundable deposit to book, other orders are paid in full when booked, and everything is made in a home kitchen that handles nuts, dairy, eggs, wheat and soy.</label>
+        </div>
+      </fieldset>
+      <div class="submit-row">
+        <button class="btn" type="submit">Request my spot</button>
+        <p>I'll text you within 24 hours to confirm. Questions? DM <a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a> on Instagram.</p>
+      </div>
+    </form>

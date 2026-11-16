@@ -1,0 +1,40 @@
+{
+  "business_name": "Ginger & Crumb",
+  "baker_name": "[Name]",
+  "city": "Richmond Hill",
+  "province": "Ontario",
+  "service_areas": [
+    "Richmond Hill",
+    "Markham",
+    "Vaughan",
+    "Thornhill",
+    "Aurora"
+  ],
+  "instagram": "gingerandcrumb_",
+  "formspree_id": "YOUR_FORM_ID",
+  "hero_headline": "Small-batch bakes,",
+  "hero_highlight": "from scratch.",
+  "hero_intro": "Cookies, cupcakes, custom cakes and cozy loaves, baked to order in my Richmond Hill kitchen. Made fresh for your birthdays, showers, holidays and ordinary Tuesdays.",
+  "hero_badges": [
+    "Baked to order",
+    "Pickup in Richmond Hill",
+    "Custom designs"
+  ],
+  "about": "I bake everything myself, in small batches, with real butter and no shortcuts. Every order is made for you, so it's never sitting on a shelf. Thank you for supporting a local small business.",
+  "menu_intro": "Everything is baked fresh for your pickup date. Flavours change with the seasons, so follow along on Instagram for what's new.",
+  "menu_note": "Prices in CAD. Custom designs are quoted after you order. Gluten-free and egg-free options may be available on request; ask in your order notes.",
+  "lead_time_regular": "1 week",
+  "lead_time_custom": "2 weeks",
+  "pickup_times": [
+    "Morning (9am to 12pm)",
+    "Afternoon (12pm to 4pm)",
+    "Evening (4pm to 7pm)"
+  ],
+  "announcement": {
+    "show": true,
+    "text": "Holiday Cookie Boxes: only 30 this year \u00b7 orders close Dec 12",
+    "link_text": "Reserve yours"
+  },
+  "hero_photo": "",
+  "logo": "images/logo.png"
+}

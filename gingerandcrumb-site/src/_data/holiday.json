@@ -1,0 +1,15 @@
+{
+  "show": true,
+  "kicker": "Limited holiday pre-order",
+  "title": "The Holiday Cookie Box",
+  "details": [
+    "12 cookies, 6 flavours, gift-ready with a ribbon",
+    "Order by Dec 12 \u00b7 Pickup Dec 18\u201320 in Richmond Hill"
+  ],
+  "price": "$[price]",
+  "total": 30,
+  "claimed": 12,
+  "photo": "",
+  "icon": "box",
+  "add_to_order_form": true
+}

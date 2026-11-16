@@ -1,0 +1,28 @@
+{
+  "questions": [
+    {
+      "q": "How far ahead should I order?",
+      "a": "One week for cookies, cupcakes and loaves. Two weeks for custom cakes. Holiday weeks fill fast, so earlier is better. Last-minute? Send the form anyway and I'll do my best."
+    },
+    {
+      "q": "Do you deliver?",
+      "a": "Pickup only for now, in Richmond Hill. You'll get the address once your order is confirmed."
+    },
+    {
+      "q": "How do I pay?",
+      "a": "Interac e-Transfer. Custom cakes need a 50% non-refundable deposit to book, with the balance due at pickup. Everything else is paid in full when booked."
+    },
+    {
+      "q": "Can you work around allergies?",
+      "a": "Tell me about any allergies in your order. Gluten-free and egg-free options may be possible, but everything is made in a home kitchen that handles nuts, dairy, eggs, wheat and soy, so I can't guarantee anything is allergen-free."
+    },
+    {
+      "q": "How big a cake do I need?",
+      "a": "A 6-inch cake serves about 8 to 12, and an 8-inch serves about 16 to 24. Tiered cakes are quoted on request."
+    },
+    {
+      "q": "How should I transport my cake?",
+      "a": "Flat on the floor behind the passenger seat, with the A/C on in warm weather. Never on a seat. Keep it cool until it's time to serve."
+    }
+  ]
+}

@@ -1,0 +1,309 @@
+---
+permalink: /index.html
+---
+{%- set s = settings -%}
+{%- set loc = s.city ~ ", " ~ s.province -%}
+{%- set nextWeek = null -%}
+{%- for w in availability.weeks -%}{%- if not nextWeek and w.spots_left > 0 -%}{%- set nextWeek = w -%}{%- endif -%}{%- endfor -%}
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+{% include "seo.njk" %}
+<link rel="icon" type="image/png" href="{{ s.favicon or 'images/favicon.png' }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Option D, "Picnic Gingham": pink gingham everywhere, white paper cards with scalloped edges like a bakery-box label, deep raspberry ink */
+:root{
+  /* Her gingham: white with #fdd0cf stripes and #e79c98 crossings; logo browns from the cookie lettering */
+  --stripe:#fdd0cf; --cross:#e79c98; --coral:#c45a55; --coral-big:#d0706b;
+  --pink:#e79c98; --pink-soft:#fff0ef;
+  --ink:#5b3520; --muted:#8a6656; --paper:#ffffff; --line:#f7d3d1; --butter:#f2c58f;
+  --display:"Gloock",Georgia,serif;
+  --body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ging-lg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Crect width='64' height='64' fill='%23ffffff'/%3E%3Crect x='0' width='15' height='64' fill='%23fdd0cf'/%3E%3Crect y='0' width='64' height='15' fill='%23fdd0cf'/%3E%3Crect width='15' height='15' fill='%23e79c98'/%3E%3C/svg%3E");
+  --ging-md:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Crect width='32' height='32' fill='%23ffffff'/%3E%3Crect x='0' width='8' height='32' fill='%23fdd0cf'/%3E%3Crect y='0' width='32' height='8' fill='%23fdd0cf'/%3E%3Crect width='8' height='8' fill='%23e79c98'/%3E%3C/svg%3E");
+  --ging-sm:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Crect width='14' height='14' fill='%23ffffff'/%3E%3Crect x='0' width='4' height='14' fill='%23fdd0cf'/%3E%3Crect y='0' width='14' height='4' fill='%23fdd0cf'/%3E%3Crect width='4' height='4' fill='%23e79c98'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;overflow-x:clip}
+body{color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;background:#fff var(--ging-lg) repeat}
+.gingham{background:#fff var(--ging-md) repeat}
+a{color:var(--ink)}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+h1,h2{font-family:var(--display);line-height:1.02}
+p{margin:0 0 12px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--butter);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+
+/* scalloped paper card */
+.paper{background:var(--paper);border-radius:6px;position:relative;box-shadow:0 14px 34px rgba(90,21,48,.10)}
+.scallop{--r:12px;position:relative}
+.scallop::before,.scallop::after{content:"";position:absolute;left:0;right:0;height:var(--r);background:radial-gradient(circle at 50% 100%,#fff calc(var(--r) - .5px),transparent var(--r)) 0 0/calc(var(--r)*2) var(--r) repeat-x}
+.scallop::before{top:calc(var(--r)*-1)}
+.scallop::after{bottom:calc(var(--r)*-1);transform:rotate(180deg)}
+
+.announce{background:var(--ink);color:#fff;text-align:center;font-weight:700;font-size:.9rem;padding:9px 14px}
+.announce a{color:var(--butter)}
+
+.nav{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid var(--pink)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-size:1.4rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo img{width:46px;height:46px;border-radius:50%;box-shadow:0 0 0 2px var(--line)}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{text-decoration:none;font-weight:700;font-size:.95rem}
+.nav ul a:hover{color:var(--coral)}
+@media (max-width:700px){.nav ul{display:none}.logo{font-size:1.2rem}}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;font-weight:800;padding:12px 22px;border-radius:999px;border:0;font-family:inherit;font-size:1rem;cursor:pointer;box-shadow:0 4px 0 #3a2012}
+.btn:hover{background:var(--cross);color:var(--ink);box-shadow:0 4px 0 #c4807b}
+.btn.soft{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.soft:hover{background:var(--pink-soft)}
+.nav .btn{padding:8px 16px;font-size:.92rem}
+
+.hero{padding:150px 0 70px}
+.label{max-width:760px;margin:0 auto;text-align:center;padding:46px clamp(20px,5vw,60px) 40px}
+.label .tag{display:inline-block;background:var(--pink-soft);color:var(--ink);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:6px 14px}
+.label h1{font-size:clamp(2.8rem,8vw,5.2rem);margin:16px 0}
+.label h1 em{font-style:normal;color:var(--coral-big);display:block}
+.label p{color:var(--muted);max-width:52ch;margin:0 auto 18px;font-size:1.08rem}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.label-art{position:relative;z-index:2;background:#fff;width:210px;height:210px;margin:-140px auto 8px;border-radius:50%;border:6px solid #fff;display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 20px rgba(90,21,48,.15)}
+.label-art svg{width:76%;background:#fff;border-radius:50%;padding:8%}
+.label-art img{width:100%;height:100%;object-fit:cover}
+.booking{display:inline-flex;gap:8px;align-items:center;margin-top:18px;font-weight:800;color:var(--ink);background:var(--butter);border-radius:999px;padding:7px 16px;font-size:.92rem}
+.heart{color:var(--coral)}
+.ribbon{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;list-style:none;padding:0;margin:22px 0 0}
+.ribbon li{border:2px dashed var(--line);border-radius:999px;padding:5px 14px;font-weight:700;font-size:.88rem}
+
+section{padding:40px 0 60px}
+.sheet{padding:clamp(26px,5vw,54px)}
+.title{text-align:center;margin-bottom:26px}
+.title .k{font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+.title h2{font-size:clamp(2.2rem,6vw,3.6rem);margin-top:6px}
+.title p{color:var(--muted);max-width:56ch;margin:10px auto 0}
+
+.about p{font-size:1.15rem;text-align:center;max-width:60ch;margin:0 auto}
+.about b{color:var(--coral)}
+.about .sig{display:block;text-align:center;font-family:var(--display);font-size:1.6rem;margin-top:10px;color:var(--ink)}
+
+.menu-cols{display:grid;gap:30px 34px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.menu-col h3{font-family:var(--display);font-size:1.6rem;text-align:center;padding-bottom:10px;margin-bottom:8px;border-bottom:3px double var(--line)}
+.dish{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.dish .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;overflow:hidden}
+.dish .ic svg{width:78%;background:#fff;border-radius:50%;padding:6%}
+.dish .ic img{width:100%;height:100%;object-fit:cover}
+.dish h4{font-weight:800;font-size:1.05rem}
+.dish .price{font-weight:800;color:var(--coral);font-size:.95rem;font-variant-numeric:tabular-nums}
+.dish p{color:var(--muted);font-size:.92rem;margin:2px 0 0}
+.dish.off{opacity:.45}
+.off-tag{font-size:.72rem;font-weight:800;background:var(--pink-soft);border-radius:999px;padding:2px 8px;margin-left:6px}
+.note{text-align:center;color:var(--muted);font-size:.9rem;margin:22px auto 0;max-width:60ch}
+
+.weeks{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.week{background:#fff;border-radius:16px;padding:18px;border:2px solid var(--line);text-align:center;position:relative}
+.week::before{content:"";position:absolute;top:-9px;left:50%;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:var(--pink);box-shadow:inset 0 0 0 5px #fff,0 0 0 2px var(--line)}
+.week .d{font-family:var(--display);font-size:1.4rem}
+.week .st{display:inline-block;margin:8px 0 12px;font-weight:800;font-size:.8rem;border-radius:999px;padding:4px 12px}
+.week.full{opacity:.6}.week.full .d{text-decoration:line-through}
+.week.full .st{background:#f3ebe7;color:var(--muted)}
+.week.few{border-color:var(--cross)}.week.few .st{background:var(--coral);color:#fff}
+.week.open .st{background:#e3f4dc;color:#2f6b25}
+.meter{height:10px;border-radius:999px;background:var(--pink-soft);overflow:hidden}
+.meter i{display:block;height:100%;width:var(--w);border-radius:999px;background:var(--cross) var(--ging-sm) repeat;box-shadow:inset 0 0 0 1px rgba(196,90,85,.35)}
+.week small{display:block;margin-top:8px;color:var(--muted)}
+.dl{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;padding:0;margin:24px 0 0}
+.dl li{background:#fff;border:2px solid var(--line);border-radius:12px;padding:8px 14px;font-size:.92rem}
+.dl b{color:var(--coral)}
+
+.special{padding:16px;border-radius:30px}
+.special-in{background:#fff;border-radius:20px;padding:clamp(24px,5vw,48px);display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center}
+.special-art{width:190px;height:190px;border-radius:50%;display:grid;place-items:center;overflow:hidden;border:6px solid #fff;box-shadow:0 0 0 3px var(--pink)}
+.special-art svg{width:70%;background:#fff;border-radius:50%;padding:8%}
+.special-art img{width:100%;height:100%;object-fit:cover}
+.special .k{font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+.special h2{font-size:clamp(2.2rem,6vw,3.6rem);margin:6px 0 14px}
+.special ul{margin:0 0 18px;padding-left:20px;display:grid;gap:4px}
+.special .meter{max-width:380px;height:12px}
+.special .count{font-weight:800;margin:8px 0 18px}
+@media (max-width:700px){.special-in{grid-template-columns:1fr;text-align:center}.special-art{margin:0 auto}.special ul{text-align:left;display:inline-grid}.special .meter{margin:0 auto}}
+
+.steps{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{text-align:center;counter-increment:s;padding:0 8px}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:56px;height:56px;margin:0 auto 12px;border-radius:50%;font-family:var(--display);font-size:1.6rem;color:var(--ink);background:#fff var(--ging-sm) repeat;box-shadow:inset 0 0 0 4px #fff,0 0 0 2px var(--pink)}
+.steps h3{font-weight:800;font-size:1.1rem;margin-bottom:4px}
+.steps p{color:var(--muted);font-size:.94rem;margin:0}
+
+.lead{color:var(--muted);text-align:center;max-width:62ch;margin:0 auto}
+.cap-note{display:flex;gap:10px;justify-content:center;background:var(--pink-soft);border-radius:14px;padding:12px 16px;margin:16px auto 0;max-width:720px}
+.cap-note b{color:var(--coral)}
+form{display:grid;gap:22px;margin-top:28px}
+fieldset{border:2px dashed var(--line);border-radius:18px;padding:20px;margin:0;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+legend{font-family:var(--display);font-size:1.35rem;padding:0 10px}
+.field{display:grid;gap:6px}
+.field.full{grid-column:1/-1}
+label,.label-t,.field .label{font-weight:700;font-size:.95rem}
+.hint{font-weight:400;color:var(--muted);font-size:.84rem}
+input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{font:inherit;font-size:1rem;padding:11px 13px;border:2px solid var(--line);border-radius:12px;background:#fffaf9;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--pink);outline:none}
+textarea{min-height:90px;resize:vertical}
+.choices{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.choices label{display:flex;gap:8px;align-items:center;background:#fffafb;border:2px solid var(--line);border-radius:12px;padding:9px 12px;font-weight:600;cursor:pointer}
+.choices input,.agree input{accent-color:var(--coral)}
+.agree{display:flex;gap:10px;align-items:flex-start;font-weight:600}
+.agree input{width:20px;height:20px;margin-top:3px;flex:0 0 auto}
+.submit-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap;text-align:center}
+.submit-row p{margin:0;color:var(--muted);font-size:.92rem}
+
+.faq{display:grid;gap:10px;max-width:780px;margin:0 auto}
+details{background:#fffafb;border:2px solid var(--line);border-radius:14px;padding:14px 18px}
+summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"♥";color:var(--pink)}
+details[open] summary::after{color:var(--coral)}
+details p{color:var(--muted);margin:10px 0 0}
+
+footer{background:var(--ink);color:#f3ddd3;padding:46px 0;font-size:.92rem;text-align:center;border-top:14px solid transparent;border-image:none;border-top:0}
+.foot-ging{height:16px;background:#fff var(--ging-sm) repeat}
+footer .logo{color:#fff;font-size:2.2rem;display:block;margin-bottom:8px}
+footer a{color:var(--butter)}
+footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-top:16px}
+</style>
+</head>
+<body>
+
+{% if s.announcement.show %}<div class="announce">{{ s.announcement.text }} · <a href="#order">{{ s.announcement.link_text }}</a></div>{% endif %}
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      {% if availability.show %}<li><a href="#availability">Availability</a></li>{% endif %}
+      {% if holiday.show %}<li><a href="#special">{{ holiday.title | replace("The ", "") }}</a></li>{% endif %}
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn" href="#order">Order now</a>
+  </div>
+</nav>
+
+<header class="hero gingham" id="top">
+  <div class="wrap">
+    <div class="paper scallop label">
+      <div class="label-art">{% if s.logo %}<img src="{{ s.logo }}" alt="{{ s.business_name }} logo">{% elif s.hero_photo %}<img src="{{ s.hero_photo }}" alt="Fresh bakes from {{ s.business_name }}">{% else %}<svg viewBox="0 0 100 100" aria-hidden="true">{{ icons.cake | safe }}</svg>{% endif %}</div>
+      <span class="tag">Home bakery · {{ loc }}</span>
+      <h1>{{ s.hero_headline }} <em>{{ s.hero_highlight }}</em></h1>
+      <p>{{ s.hero_intro }}</p>
+      <div class="ctas"><a class="btn" href="#order">Book your spot</a><a class="btn soft" href="#menu">See the menu</a></div>
+      {% if availability.show and nextWeek %}<div class="booking"><span class="heart" aria-hidden="true">♥</span>Now booking {{ nextWeek.label }}{% if nextWeek.spots_left <= 3 %} · only {{ nextWeek.spots_left }} left{% endif %}</div>{% endif %}
+      <ul class="ribbon">{% for b in s.hero_badges %}<li>{{ b }}</li>{% endfor %}</ul>
+    </div>
+  </div>
+</header>
+
+<section class="about" aria-label="About" style="padding-top:60px">
+  <div class="wrap"><div class="paper sheet">
+    <p>Hi, I'm <b>{{ s.baker_name }}</b>, the baker behind {{ s.business_name }}. {{ s.about }}</p>
+    <span class="sig">xo, {{ s.baker_name }}</span>
+  </div></div>
+</section>
+
+<section id="menu">
+  <div class="wrap"><div class="paper scallop sheet">
+    <div class="title"><span class="k">Fresh from the oven</span><h2>The Menu</h2><p>{{ s.menu_intro }}</p></div>
+    <div class="menu-cols">
+      {% for g in menu.groups %}
+      <div class="menu-col">
+        <h3>{{ g.title }}</h3>
+        {% for it in g.items %}
+        <div class="dish{% if not it.available %} off{% endif %}">
+          <span class="ic gingham">{% if it.photo %}<img src="{{ it.photo }}" alt="{{ it.name }}" loading="lazy">{% else %}<svg viewBox="0 0 100 100" aria-hidden="true">{{ icons[it.icon or "cookie"] | safe }}</svg>{% endif %}</span>
+          <div><h4>{{ it.name }}{% if not it.available %}<span class="off-tag">Not available</span>{% endif %}</h4><span class="price">{{ it.price }}</span><p>{{ it.description }}</p></div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    <p class="note">{{ s.menu_note }}</p>
+  </div></div>
+</section>
+
+{% if availability.show %}
+<section id="availability">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Limited spots</span><h2>This month's availability</h2><p>One baker, a limited number of orders each week. When a week is full, it's closed.</p></div>
+    <div class="weeks">
+      {% for w in availability.weeks %}
+      {%- set cls = "full" if w.spots_left <= 0 else ("few" if w.spots_left <= 3 else "open") -%}
+      {%- set booked = ((w.spots_total - w.spots_left) / w.spots_total * 100) | round if w.spots_total > 0 else 100 -%}
+      <div class="week {{ cls }}"><div class="d">{{ w.label }}</div><span class="st">{% if cls == "full" %}Fully booked{% elif cls == "few" %}Only {{ w.spots_left }} left!{% else %}Booking now{% endif %}</span><div class="meter"><i style="--w:{{ booked }}%"></i></div><small>{{ w.spots_left if w.spots_left > 0 else 0 }} of {{ w.spots_total }} spots left</small></div>
+      {% endfor %}
+    </div>
+    {% if deadlines.show and deadlines.items.length %}
+    <ul class="dl" aria-label="Order deadlines">{% for d in deadlines.items %}<li><b>{{ d.date }}</b> · {{ d.text }}</li>{% endfor %}</ul>
+    {% endif %}
+  </div></div>
+</section>
+{% endif %}
+
+{% if holiday.show %}
+<section id="special">
+  <div class="wrap">
+    <div class="special gingham"><div class="special-in">
+      <div class="special-art gingham">{% if holiday.photo %}<img src="{{ holiday.photo }}" alt="{{ holiday.title }}">{% else %}<svg viewBox="0 0 100 100" aria-hidden="true">{{ icons[holiday.icon or "box"] | safe }}</svg>{% endif %}</div>
+      <div>
+        <span class="k">{{ holiday.kicker }}</span>
+        <h2>{{ holiday.title }}</h2>
+        <ul>{% for d in holiday.details %}<li>{{ d }}</li>{% endfor %}<li>Only {{ holiday.total }} available</li></ul>
+        {% if holiday.total > 0 %}{%- set pct = (holiday.claimed / holiday.total * 100) | round -%}
+        <div class="meter"><i style="--w:{{ pct }}%"></i></div>
+        <p class="count">{% if holiday.claimed >= holiday.total %}Sold out. Thank you!{% else %}{{ holiday.claimed }} of {{ holiday.total }} claimed{% endif %}</p>{% endif %}
+        {% if holiday.claimed < holiday.total %}<a class="btn" href="#order">Reserve yours · {{ holiday.price }}</a>{% endif %}
+      </div>
+    </div></div>
+  </div>
+</section>
+{% endif %}
+
+<section id="how">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Easy as pie</span><h2>How ordering works</h2></div>
+    <ol class="steps">
+      <li><h3>Send your order</h3><p>Fill out the form below with what you'd like and your pickup date.</p></li>
+      <li><h3>I'll confirm</h3><p>Within 24 hours I'll text you to confirm details and your total.</p></li>
+      <li><h3>Pay to book</h3><p>Interac e-Transfer: 50% deposit for custom cakes, full payment for everything else.</p></li>
+      <li><h3>Pick it up</h3><p>Pickup in {{ s.city }}. The address is sent once you're booked.</p></li>
+    </ol>
+  </div></div>
+</section>
+
+<section id="order">
+  <div class="wrap"><div class="paper scallop sheet">
+    <div class="title"><span class="k">Order form</span><h2>Place your order</h2></div>
+    <p class="lead">Order at least <b>{{ s.lead_time_regular }}</b> ahead for cookies, cupcakes and loaves, and <b>{{ s.lead_time_custom }}</b> ahead for custom cakes. Your order is booked once I confirm it and payment is received.</p>
+    {% if availability.show %}<p class="cap-note"><span aria-hidden="true">♥</span><span>I take about <b>{{ availability.orders_per_week }} orders a week</b>, first-come, first-served. <a href="#availability">Check availability</a> before picking a date.</span></p>{% endif %}
+{% include "order-form.njk" %}
+  </div></div>
+</section>
+
+<section id="faq">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Good to know</span><h2>Questions</h2></div>
+    <div class="faq">{% for f in faq.questions %}<details><summary>{{ f.q }}</summary><p>{{ f.a }}</p></details>{% endfor %}</div>
+  </div></div>
+</section>
+
+<div class="foot-ging" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" style="justify-content:center"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
+    <p>Small-batch home bakery in {{ loc }} · Serving {{ s.service_areas | join(", ") }}</p>
+    <div class="cols"><a href="#order">Order form</a><span>Pickup only · {{ s.city }}, ON</span><a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a></div>
+    <p style="margin-top:16px;font-size:.82rem">© {{ build.year }} {{ s.business_name }}</p>
+  </div>
+</footer>
+</body>
+</html>

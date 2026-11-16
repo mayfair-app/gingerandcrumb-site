@@ -1,0 +1,91 @@
+{
+  "groups": [
+    {
+      "title": "Cookies",
+      "items": [
+        {
+          "name": "Classic chocolate chip",
+          "description": "Brown butter, chunks of semi-sweet chocolate, flaky salt.",
+          "price": "$24 / dozen",
+          "icon": "cookie",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Soft gingerbread",
+          "description": "Our namesake. Molasses, fresh ginger, lemon icing.",
+          "price": "$26 / dozen",
+          "icon": "ginger",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Decorated sugar cookies",
+          "description": "Hand-iced to your theme, colours and names.",
+          "price": "from $42 / dozen",
+          "icon": "heart",
+          "photo": "",
+          "available": true
+        }
+      ]
+    },
+    {
+      "title": "Cupcakes & cakes",
+      "items": [
+        {
+          "name": "Cupcakes",
+          "description": "Vanilla, chocolate or seasonal, with whipped buttercream.",
+          "price": "6 for $30 \u00b7 12 for $55",
+          "icon": "cupcake",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Custom celebration cake",
+          "description": "Vintage piping, florals or your theme. 6-inch serves 8\u201312.",
+          "price": "from $85",
+          "icon": "cake",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Vintage heart cake",
+          "description": "6-inch heart with ruffles, bows and a message.",
+          "price": "from $75",
+          "icon": "heart",
+          "photo": "",
+          "available": true
+        }
+      ]
+    },
+    {
+      "title": "Loaves & bars",
+      "items": [
+        {
+          "name": "Ginger molasses loaf",
+          "description": "Warm spice, crackly top, the perfect slice with tea.",
+          "price": "$16",
+          "icon": "loaf",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Brown butter banana bread",
+          "description": "Very ripe bananas, toasted walnuts optional.",
+          "price": "$15",
+          "icon": "loaf",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Fudgy brownies",
+          "description": "Dark chocolate, ganache drizzle.",
+          "price": "6 for $24 \u00b7 12 for $45",
+          "icon": "bar",
+          "photo": "",
+          "available": true
+        }
+      ]
+    }
+  ]
+}
