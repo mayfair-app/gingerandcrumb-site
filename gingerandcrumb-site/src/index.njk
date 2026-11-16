@@ -4,7 +4,7 @@ permalink: /index.html
 {%- set s = settings -%}
 {%- set loc = s.city ~ ", " ~ s.province -%}
 {%- set nextWeek = null -%}
-{%- for w in availability.weeks -%}{%- if not nextWeek and w.spots_left > 0 -%}{%- set nextWeek = w -%}{%- endif -%}{%- endfor -%}
+{%- for w in weeks -%}{%- if not nextWeek and w.spots_left > 0 -%}{%- set nextWeek = w -%}{%- endif -%}{%- endfor -%}
 <!DOCTYPE html>
 <html lang="en-CA">
 <head>
@@ -219,7 +219,7 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
       <h1>{{ s.hero_headline }} <em>{{ s.hero_highlight }}</em></h1>
       <p>{{ s.hero_intro }}</p>
       <div class="ctas"><a class="btn" href="#order">Book your spot</a><a class="btn soft" href="#menu">See the menu</a></div>
-      {% if availability.show and nextWeek %}<div class="booking"><span class="heart" aria-hidden="true">♥</span>Now booking {{ nextWeek.label }}{% if nextWeek.spots_left <= 3 %} · only {{ nextWeek.spots_left }} left{% endif %}</div>{% endif %}
+      {% if availability.show and nextWeek %}<div class="booking"><span class="heart" aria-hidden="true">♥</span>Now booking {{ nextWeek.label }}{% if nextWeek.spots_left <= (nextWeek.spots_total / 2) %} · only {{ nextWeek.spots_left }} left{% endif %}</div>{% endif %}
       <ul class="ribbon">{% for b in s.hero_badges %}<li>{{ b }}</li>{% endfor %}</ul>
     </div>
   </div>
@@ -310,8 +310,8 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
   <div class="wrap"><div class="paper sheet">
     <div class="title"><span class="k">Limited spots</span><h2>This month's availability</h2><p>One baker, a limited number of orders each week. When a week is full, it's closed.</p></div>
     <div class="weeks">
-      {% for w in availability.weeks %}
-      {%- set cls = "full" if w.spots_left <= 0 else ("few" if w.spots_left <= 3 else "open") -%}
+      {% for w in weeks %}
+      {%- set cls = "full" if w.spots_left <= 0 else ("few" if w.spots_left <= (w.spots_total / 2) else "open") -%}
       {%- set booked = ((w.spots_total - w.spots_left) / w.spots_total * 100) | round if w.spots_total > 0 else 100 -%}
       <div class="week {{ cls }}"><div class="d">{{ w.label }}</div><span class="st">{% if cls == "full" %}Fully booked{% elif cls == "few" %}Only {{ w.spots_left }} left!{% else %}Booking now{% endif %}</span><div class="meter"><i style="--w:{{ booked }}%"></i></div><small>{{ w.spots_left if w.spots_left > 0 else 0 }} of {{ w.spots_total }} spots left</small></div>
       {% endfor %}
