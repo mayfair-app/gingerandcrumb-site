@@ -1,0 +1,116 @@
+---
+permalink: /giveaway/index.html
+---
+{%- set s = settings -%}
+{%- set g = giveaway -%}
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giveaway | {{ s.business_name }}, {{ s.city }}</title>
+<meta name="description" content="{{ g.title }} Enter the {{ s.business_name }} Instagram giveaway. Everyone who enters gets {{ g.coupon_percent }}% off their first order.">
+{% if not g.live %}<meta name="robots" content="noindex">{% endif %}
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+{% include "styles.njk" %}
+.gw-hero{padding:40px 0 30px}
+.gw-logo{display:block;width:110px;margin:0 auto 10px}.gw-logo img{display:block;width:110px;height:110px;border-radius:50%}
+.gw-hero .k{display:block}
+.gw-hero .sheet{text-align:center}
+.gw-hero h1{font-size:clamp(2.4rem,8vw,4.4rem);margin:8px 0 14px}
+.gw-hero .k,.gw .k{font-weight:800;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+.gw-hero p{color:var(--muted);max-width:56ch;margin:0 auto}
+.gw-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;padding:0;margin:22px 0 0}
+.gw-facts li{background:var(--pink-soft);border-radius:999px;padding:8px 16px;font-weight:800}
+.gw-gift{margin:24px auto 0;max-width:620px;border:3px dashed var(--cross);border-radius:18px;padding:18px 20px;background:#fffaf9}
+.gw-gift b{color:var(--coral)}
+.entries{width:100%;border-collapse:separate;border-spacing:0 10px}
+.entries td{background:var(--pink-soft);padding:14px 16px;vertical-align:middle}
+.entries td:first-child{border-radius:14px 0 0 14px}
+.entries td:last-child{border-radius:0 14px 14px 0;text-align:right;white-space:nowrap}
+.entries .pts{font-family:var(--display);font-size:1.6rem;color:var(--coral)}
+.entries small{display:block;color:var(--muted)}
+.gw-form iframe{width:100%;min-height:1100px;border:0;border-radius:14px;background:#fff}
+.gw-soon{text-align:center;background:var(--pink-soft);border-radius:14px;padding:24px}
+.rules{color:var(--muted);font-size:.95rem}
+.rules .title h2{color:var(--ink)}
+.rules h3{font-family:var(--display);color:var(--ink);font-size:1.3rem;margin:20px 0 6px}
+.rules ul{padding-left:20px}
+.back{display:inline-block;margin-top:10px}
+</style>
+</head>
+<body>
+
+<header class="gw-hero gingham">
+  <div class="wrap"><div class="paper scallop sheet">
+    <a class="gw-logo" href="/"><img src="/{{ s.logo }}" alt="{{ s.business_name }} logo" width="110" height="110"></a>
+    <span class="k">Instagram giveaway</span>
+    <h1>{{ g.title }}</h1>
+    <p>{{ g.intro }}</p>
+    <ul class="gw-facts">
+      <li>{{ g.winners }} winners</li>
+      <li>Closes {{ g.closes }}</li>
+      <li>Winners drawn {{ g.draw_date }}</li>
+    </ul>
+    <div class="gw-gift"><b>Everyone wins something:</b> every entrant who opts in gets a coupon for <b>{{ g.coupon_percent }}% off their first order</b>, good on orders placed by {{ g.coupon_expiry }}. Perfect timing for Christmas.</div>
+  </div></div>
+</header>
+
+<section class="gw">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">How to enter</span><h2>Rack up your entries</h2><p>Do as many as you like. Every action is counted, and more entries mean more chances to win.</p></div>
+    <table class="entries">
+      {% for e in g.entries %}<tr><td>{{ e.action }}{% if e.note %}<small>{{ e.note }}</small>{% endif %}</td><td><span class="pts">+{{ e.points }}</span> {% if e.points == 1 %}entry{% else %}entries{% endif %}</td></tr>
+      {% endfor %}
+    </table>
+  </div></div>
+</section>
+
+<section class="gw" id="enter" style="padding-top:0">
+  <div class="wrap"><div class="paper sheet">
+    <div class="title"><span class="k">Step 1</span><h2>Enter here</h2><p>Use the same Instagram handle you like, comment and share with, so I can count all your entries.</p></div>
+    <div class="gw-form">
+      {% if g.form_embed_url %}<iframe src="{{ g.form_embed_url }}" title="Giveaway entry form" loading="lazy">Loading the entry form…</iframe>
+      {% else %}<div class="gw-soon"><b>The entry form opens {{ g.opens }}.</b><br>Follow <a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a> so you don't miss it.</div>{% endif %}
+    </div>
+  </div></div>
+</section>
+
+<section class="gw" id="rules" style="padding-top:0">
+  <div class="wrap"><div class="paper sheet rules">
+    <div class="title"><span class="k">The fine print</span><h2>Giveaway rules</h2></div>
+    <h3>Who's running it</h3>
+    <p>This giveaway is run by {{ s.business_name }} ({{ s.baker_name }}), a home bakery in {{ s.city }}, {{ s.province }}. Contact: <a href="mailto:{{ s.email }}">{{ s.email }}</a>.</p>
+    <h3>When</h3>
+    <p>Opens {{ g.opens }} and closes {{ g.closes }}. Entries after the close are not counted.</p>
+    <h3>Who can enter</h3>
+    <p>{{ g.eligibility }} One entry form per person. Entries made with fake or duplicate accounts are disqualified.</p>
+    <h3>How entries are counted</h3>
+    <ul>{% for e in g.entries %}<li>{{ e.action }}: {{ e.points }} {% if e.points == 1 %}entry{% else %}entries{% endif %}</li>{% endfor %}</ul>
+    <p>You must follow @{{ s.instagram }} and fill in the entry form to be eligible. Instagram actions only count if they come from the handle on your entry form and can be seen by {{ s.business_name }}, so please tag @{{ s.instagram }} in Story shares.</p>
+    <h3>Prizes</h3>
+    <p>{{ g.winners }} prizes. Each prize is {{ g.prize }}{% if g.prize_value %}, with an approximate retail value of {{ g.prize_value }}{% endif %}. Prizes are picked up in {{ s.city }} by {{ g.prize_pickup_by }}. No cash value or substitutions. The odds of winning depend on the number of eligible entries received.</p>
+    <h3>Picking the winners</h3>
+    <p>Winners are drawn at random on {{ g.draw_date }}, with each person's chances based on their number of eligible entries. Winners are contacted by Instagram DM from @{{ s.instagram }} only and by email. They must reply within 48 hours and correctly answer a skill-testing question to claim their prize, or another winner is drawn. {{ s.business_name }} will never ask for payment or card details.</p>
+    <h3>The {{ g.coupon_percent }}% coupon</h3>
+    <p>Entrants who tick the box on the entry form are emailed a coupon for {{ g.coupon_percent }}% off their first {{ s.business_name }} order. Valid on orders placed by {{ g.coupon_expiry }}, one per person, subject to available order spots, and can't be combined with other offers.</p>
+    <h3>Your information</h3>
+    <p>Your details are only used to run this giveaway and, if you opt in, to send you the coupon and occasional {{ s.business_name }} emails. You can unsubscribe at any time. Your information is never sold or shared.</p>
+    <h3>Instagram</h3>
+    <p>This giveaway is not sponsored, endorsed or administered by, or associated with, Instagram or Meta. By entering, you release Instagram and Meta from any responsibility for the giveaway.</p>
+    <p><a class="btn soft back" href="/">Back to {{ s.business_name }}</a></p>
+  </div></div>
+</section>
+
+<div class="foot-ging" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <p>{{ s.business_name }} · Small-batch home bakery in {{ s.city }}, {{ s.province }} · <a href="https://www.instagram.com/{{ s.instagram }}/">@{{ s.instagram }}</a></p>
+  </div>
+</footer>
+</body>
+</html>

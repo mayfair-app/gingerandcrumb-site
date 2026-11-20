@@ -1,0 +1,23 @@
+{
+  "live": false,
+  "title": "Win a two-dozen box of cookies!",
+  "intro": "To say thank you for all the love, I'm giving away a two-dozen box of my cookies to 3 lucky winners. And everyone who enters gets a little gift too.",
+  "winners": 3,
+  "prize": "A two-dozen box of Ginger & Crumb cookies (24 cookies), baker's choice of flavours",
+  "prize_value": "",
+  "opens": "Saturday, November 21 at 9:00 am ET",
+  "closes": "Sunday, November 29 at 11:59 pm ET",
+  "draw_date": "Monday, November 30",
+  "prize_pickup_by": "December 20",
+  "coupon_percent": 20,
+  "coupon_expiry": "December 15",
+  "eligibility": "Open to residents of Ontario who are 18 or older and can pick up in Richmond Hill.",
+  "form_embed_url": "",
+  "entries": [
+    { "action": "Follow @gingerandcrumb_ and fill in the entry form below", "points": 1, "note": "Required to enter" },
+    { "action": "Like the giveaway post", "points": 2, "note": "" },
+    { "action": "Comment on the giveaway post and tag a friend", "points": 5, "note": "" },
+    { "action": "Share the giveaway post to your Instagram Story and tag @gingerandcrumb_", "points": 5, "note": "Tag us so I can see it" },
+    { "action": "Share an extra Story on a different day and tag @gingerandcrumb_", "points": 10, "note": "Tag us so I can see it" }
+  ]
+}

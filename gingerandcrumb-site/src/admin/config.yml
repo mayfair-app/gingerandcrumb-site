@@ -123,6 +123,34 @@ collections:
           - { label: "Pickup time options", name: pickup_times, widget: list, field: { label: "Time", name: time, widget: string } }
           - { label: "Formspree form ID (set up once, don't change)", name: formspree_id, widget: string }
 
+      - label: "Giveaway page"
+        name: giveaway
+        file: "gingerandcrumb-site/src/_data/giveaway.json"
+        description: "The giveaway page at gingerandcrumb.ca/giveaway. Turn on 'Live' once the details are final so Google can find it."
+        fields:
+          - { label: "Live (show to Google)", name: live, widget: boolean, default: false }
+          - { label: "Headline", name: title, widget: string }
+          - { label: "Intro", name: intro, widget: text }
+          - { label: "Number of winners", name: winners, widget: number, value_type: int, min: 1 }
+          - { label: "Prize (each winner gets)", name: prize, widget: string }
+          - { label: "Approximate prize value (e.g. $50)", name: prize_value, widget: string, required: false }
+          - { label: "Opens", name: opens, widget: string }
+          - { label: "Closes", name: closes, widget: string }
+          - { label: "Winners drawn on", name: draw_date, widget: string }
+          - { label: "Prize pickup by", name: prize_pickup_by, widget: string }
+          - { label: "Coupon % off", name: coupon_percent, widget: number, value_type: int }
+          - { label: "Coupon good on orders placed by", name: coupon_expiry, widget: string }
+          - { label: "Who can enter", name: eligibility, widget: text }
+          - { label: "Google Form embed link (ends in viewform?embedded=true)", name: form_embed_url, widget: string, required: false }
+          - label: "Ways to enter"
+            name: entries
+            widget: list
+            summary: "+{{fields.points}} · {{fields.action}}"
+            fields:
+              - { label: "Action", name: action, widget: string }
+              - { label: "Entries", name: points, widget: number, value_type: int, min: 1 }
+              - { label: "Small note", name: note, widget: string, required: false }
+
       - label: "Reviews & testimonials"
         name: testimonials
         file: "gingerandcrumb-site/src/_data/testimonials.json"
