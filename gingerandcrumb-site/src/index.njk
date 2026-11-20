@@ -25,6 +25,7 @@ permalink: /index.html
   <div class="wrap">
     <a class="logo" href="#top"><img src="{{ s.logo }}" alt="" width="46" height="46">{{ s.business_name }}</a>
     <ul>
+      {% if giveaway.promote %}<li><a class="nav-gw" href="/giveaway/">Giveaway</a></li>{% endif %}
       <li><a href="#menu">Menu</a></li>
       {% if testimonials.show %}<li><a href="#reviews">Reviews</a></li>{% endif %}
       <li><a href="#request">Special requests</a></li>
@@ -35,6 +36,15 @@ permalink: /index.html
     <a class="btn" href="#order">Order now</a>
   </div>
 </nav>
+
+{% if giveaway.promote %}
+<a class="gw-strip" href="/giveaway/">
+  <span class="gw-strip-k">♥ Giveaway ♥</span>
+  <span class="gw-strip-t">{{ giveaway.title }}</span>
+  <span class="gw-strip-s">{{ giveaway.winners }} winners · Everyone wins something</span>
+  <span class="btn gw-strip-b">Enter now</span>
+</a>
+{% endif %}
 
 <header class="hero gingham" id="top">
   <div class="wrap">

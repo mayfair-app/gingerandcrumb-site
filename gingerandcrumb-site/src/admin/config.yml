@@ -128,6 +128,7 @@ collections:
         file: "gingerandcrumb-site/src/_data/giveaway.json"
         description: "The giveaway page at gingerandcrumb.ca/giveaway. Turn on 'Live' once the details are final so Google can find it."
         fields:
+          - { label: "Promote on homepage (menu link + banner)", name: promote, widget: boolean, default: true }
           - { label: "Live (show to Google)", name: live, widget: boolean, default: false }
           - { label: "Headline", name: title, widget: string }
           - { label: "Intro", name: intro, widget: text }
