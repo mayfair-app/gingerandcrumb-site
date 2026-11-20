@@ -9,7 +9,7 @@ permalink: /giveaway/index.html
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giveaway | {{ s.business_name }}, {{ s.city }}</title>
-<meta name="description" content="{{ g.title }} Enter the {{ s.business_name }} Instagram giveaway. Everyone who enters gets {{ g.coupon_percent }}% off their first order.">
+<meta name="description" content="{{ g.title }} Enter the {{ s.business_name }} Instagram giveaway. Everyone who enters wins something.">
 {% if not g.live %}<meta name="robots" content="noindex">{% endif %}
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,8 +26,10 @@ permalink: /giveaway/index.html
 .gw-hero p{color:var(--muted);max-width:56ch;margin:0 auto}
 .gw-facts{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;list-style:none;padding:0;margin:22px 0 0}
 .gw-facts li{background:var(--pink-soft);border-radius:999px;padding:8px 16px;font-weight:800}
-.gw-gift{margin:24px auto 0;max-width:620px;border:3px dashed var(--cross);border-radius:18px;padding:18px 20px;background:#fffaf9}
-.gw-gift b{color:var(--coral)}
+.gw-gift{margin:28px auto 0;max-width:640px;border:4px dashed var(--coral);border-radius:22px;padding:26px 22px;background:var(--pink-soft)}
+.gw-gift-k{display:block;font-weight:800;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--coral)}
+.gw-hero .gw-gift-big{font-family:var(--display);font-size:clamp(2.2rem,8vw,3.6rem);line-height:1.02;color:var(--coral);margin:6px 0 8px}
+.gw-hero .gw-gift-sub{color:var(--ink);font-weight:700;margin:0}
 .entries{width:100%;border-collapse:separate;border-spacing:0 10px}
 .entries td{background:var(--pink-soft);padding:14px 16px;vertical-align:middle}
 .entries td:first-child{border-radius:14px 0 0 14px}
@@ -56,7 +58,7 @@ permalink: /giveaway/index.html
       <li>Closes {{ g.closes }}</li>
       <li>Winners drawn {{ g.draw_date }}</li>
     </ul>
-    <div class="gw-gift"><b>Everyone wins something:</b> every entrant who opts in gets a coupon for <b>{{ g.coupon_percent }}% off their first order</b>, good on orders placed by {{ g.coupon_expiry }}. Perfect timing for Christmas.</div>
+    <div class="gw-gift gingham-ring"><span class="gw-gift-k">♥ Psst… ♥</span><p class="gw-gift-big">Everyone wins something!</p><p class="gw-gift-sub">Enter and keep an eye on your inbox. It's a surprise.</p></div>
   </div></div>
 </header>
 
@@ -96,10 +98,10 @@ permalink: /giveaway/index.html
     <p>{{ g.winners }} prizes. Each prize is {{ g.prize }}{% if g.prize_value %}, with an approximate retail value of {{ g.prize_value }}{% endif %}. Prizes are picked up in {{ s.city }} by {{ g.prize_pickup_by }}. No cash value or substitutions. The odds of winning depend on the number of eligible entries received.</p>
     <h3>Picking the winners</h3>
     <p>Winners are drawn at random on {{ g.draw_date }}, with each person's chances based on their number of eligible entries. Winners are contacted by Instagram DM from @{{ s.instagram }} only and by email. They must reply within 48 hours and correctly answer a skill-testing question to claim their prize, or another winner is drawn. {{ s.business_name }} will never ask for payment or card details.</p>
-    <h3>The {{ g.coupon_percent }}% coupon</h3>
-    <p>Entrants who tick the box on the entry form are emailed a coupon for {{ g.coupon_percent }}% off their first {{ s.business_name }} order. Valid on orders placed by {{ g.coupon_expiry }}, one per person, subject to available order spots, and can't be combined with other offers.</p>
+    <h3>Everyone wins something</h3>
+    <p>Every entrant who ticks the email box on the entry form gets a surprise thank-you gift from {{ s.business_name }} by email. Its details and terms are included in that email. One per person.</p>
     <h3>Your information</h3>
-    <p>Your details are only used to run this giveaway and, if you opt in, to send you the coupon and occasional {{ s.business_name }} emails. You can unsubscribe at any time. Your information is never sold or shared.</p>
+    <p>Your details are only used to run this giveaway and, if you opt in, to send you your surprise gift and occasional {{ s.business_name }} emails. You can unsubscribe at any time. Your information is never sold or shared.</p>
     <h3>Instagram</h3>
     <p>This giveaway is not sponsored, endorsed or administered by, or associated with, Instagram or Meta. By entering, you release Instagram and Meta from any responsibility for the giveaway.</p>
     <p><a class="btn soft back" href="/">Back to {{ s.business_name }}</a></p>
