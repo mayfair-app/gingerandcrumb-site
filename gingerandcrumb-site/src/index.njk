@@ -15,9 +15,11 @@ permalink: /index.html
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 {% include "styles.njk" %}
+{% include "motion.njk" %}
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 {% if s.announcement.show %}<div class="announce">{{ s.announcement.text }} · <a href="#order">{{ s.announcement.link_text }}</a></div>{% endif %}
 
@@ -65,6 +67,14 @@ permalink: /index.html
   <ul>{% for it in s.trust_items %}<li><svg viewBox="0 0 100 100" aria-hidden="true">{{ icons[it.icon or "heart"] | safe }}</svg>{{ it.text }}</li>{% endfor %}</ul>
 </section>
 {% endif %}
+
+{%- set cookieNames = [] -%}{%- for g in menu.groups -%}{%- for it in g.items -%}{%- if it.available -%}{%- set cookieNames = (cookieNames.push(it.name), cookieNames) -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+<div class="marquee" aria-label="What's baking">
+  <div class="marquee-track">
+    <ul>{% for n in cookieNames %}<li>{{ n }}</li>{% endfor %}</ul>
+    <ul aria-hidden="true">{% for n in cookieNames %}<li>{{ n }}</li>{% endfor %}</ul>
+  </div>
+</div>
 
 <section class="about" aria-label="About" style="padding-top:60px">
   <div class="wrap"><div class="paper sheet">

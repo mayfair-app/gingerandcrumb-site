@@ -1,0 +1,97 @@
+/* ===== Animated edition: CSS only, no JavaScript. Content is plain HTML; motion is an extra layer. ===== */
+
+/* Polish that applies everywhere */
+.paper{box-shadow:0 1px 0 rgba(91,53,32,.04),0 18px 50px -12px rgba(91,53,32,.18)}
+.title .k,.special .k{letter-spacing:.24em}
+.title h2{letter-spacing:-.01em}
+.btn{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.dish{transition:transform .35s cubic-bezier(.2,.8,.2,1),background .35s;border-radius:12px;padding-left:8px;padding-right:8px;margin:0 -8px}
+.dish:hover{transform:translateX(6px);background:var(--pink-soft)}
+.dish .ic{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.dish:hover .ic{transform:rotate(-12deg) scale(1.08)}
+.quote{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.quote:hover{transform:translateY(-6px) rotate(-.4deg)}
+.week{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.week:hover{transform:translateY(-4px)}
+
+/* Title underline: a hand-drawn coral swash under each section heading */
+.title .k{display:block}
+.title h2{display:inline-block;background:linear-gradient(var(--coral),var(--coral)) no-repeat 50% 100%/var(--u,60%) 4px;padding-bottom:10px;border-radius:2px}
+
+/* Scroll progress bar */
+.progress{position:fixed;top:0;left:0;right:0;height:4px;z-index:20;background:linear-gradient(90deg,var(--coral),var(--cross));transform-origin:0 50%;transform:scaleX(0);pointer-events:none}
+
+/* Cookie marquee */
+.marquee{overflow:hidden;background:var(--ink);color:#fff;padding:16px 0;border-top:3px solid var(--pink);border-bottom:3px solid var(--pink)}
+.marquee-track{display:flex;width:max-content;animation:marquee 45s linear infinite}
+.marquee ul{display:flex;list-style:none;margin:0;padding:0}
+.marquee li{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.9rem);white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:44px}
+.marquee li::after{content:"♥";color:var(--cross);font-family:var(--body);font-size:.9rem}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* Hero entrance on page load */
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.6) rotate(-18deg)}to{opacity:1;transform:none}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(3deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .hero .label{animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+  .hero .label-art{animation:pop .9s .25s cubic-bezier(.3,1.4,.4,1) both,float 6s 1.4s ease-in-out infinite}
+  .hero .tag{animation:rise .8s .45s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1{animation:rise .9s .55s cubic-bezier(.2,.8,.2,1) both}
+  .hero .label p{animation:rise .9s .7s cubic-bezier(.2,.8,.2,1) both}
+  .hero .ctas{animation:rise .9s .85s cubic-bezier(.2,.8,.2,1) both}
+  .hero .booking,.hero .ribbon{animation:rise .9s 1s cubic-bezier(.2,.8,.2,1) both}
+}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
+/* Scroll-driven motion (Chrome, Edge, Safari 26+). Other browsers simply show everything, unanimated. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    @keyframes grow{to{transform:scaleX(1)}}
+    .progress{animation:grow linear both;animation-timeline:scroll(root)}
+
+    @keyframes navshrink{to{box-shadow:0 10px 30px -10px rgba(91,53,32,.25);border-bottom-color:var(--cross)}}
+    .nav{animation:navshrink linear both;animation-timeline:scroll(root);animation-range:0 160px}
+
+    @keyframes parallax{to{background-position:0 -220px}}
+    .hero{animation:parallax linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+
+    @keyframes reveal{from{opacity:0;transform:translateY(60px) scale(.97)}to{opacity:1;transform:none}}
+    .about .paper,#menu .paper,#reviews .paper,#request .paper,#availability .paper,#how .paper,#order .paper,#faq .paper,.special{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+
+    @keyframes underline{from{--u:0%}to{--u:60%}}
+    .title h2{animation:underline linear both;animation-timeline:view();animation-range:entry 40% cover 35%}
+
+    @keyframes slidein{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+    .dish{animation:slidein linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+    .menu-col:nth-child(even) .dish{animation-name:slideright}
+    @keyframes slideright{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+
+    @keyframes tilt{from{opacity:0;transform:translateY(50px) rotate(-3deg)}to{opacity:1;transform:none}}
+    .quote{animation:tilt linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+    .quote:nth-child(even){animation-name:tilt2}
+    @keyframes tilt2{from{opacity:0;transform:translateY(50px) rotate(3deg)}to{opacity:1;transform:none}}
+
+    @keyframes fill{from{width:0}}
+    .meter i{animation:fill linear both;animation-timeline:view();animation-range:entry 20% cover 40%}
+
+    @keyframes stamp{from{opacity:0;transform:scale(.4) rotate(-30deg)}60%{opacity:1;transform:scale(1.12) rotate(6deg)}to{transform:none}}
+    .steps li::before{animation:stamp linear both;animation-timeline:view();animation-range:entry 10% cover 30%}
+    .steps li{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+
+    @keyframes spin{from{transform:rotate(-25deg) scale(.85)}to{transform:rotate(12deg) scale(1)}}
+    .special-art{animation:spin linear both;animation-timeline:view();animation-range:entry 0% exit 30%}
+
+    @keyframes trustin{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+    .trust li{animation:trustin linear both;animation-timeline:view();animation-range:entry 0% entry 90%}
+    .trust li:nth-child(2){animation-range:entry 10% entry 100%}
+    .trust li:nth-child(3){animation-range:entry 20% cover 20%}
+    .trust li:nth-child(4){animation-range:entry 30% cover 30%}
+
+    @keyframes faqin{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+    .faq details{animation:faqin linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+  }
+}
+@property --u{syntax:"<percentage>";inherits:false;initial-value:60%}
