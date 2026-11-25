@@ -9,18 +9,47 @@
       <fieldset>
         <legend>Your order</legend>
         <div class="field full">
-          <span class="label" id="what-label">What would you like?</span>
-          <div class="choices" role="group" aria-labelledby="what-label">
-            {% for g in menu.groups %}{% for it in g.items %}{% if it.available %}
-            <label><input type="checkbox" name="Items" value="{{ it.name }}"> {{ it.name }}</label>
-            {% endif %}{% endfor %}{% endfor %}
+          <span class="label-t" id="what-label">1. Pick your treats <span class="hint">(tick as many as you like)</span></span>
+          <div class="pick" role="group" aria-labelledby="what-label">
+            {% for g in menu.groups %}{% set any = false %}{% for it in g.items %}{% if it.available %}{% set any = true %}{% endif %}{% endfor %}{% if any %}
+            <div class="pick-group">
+              <p class="pick-h">{{ g.title }}</p>
+              <div class="pick-list">
+              {% for it in g.items %}{% if it.available %}
+                <label class="pick-item"><input type="checkbox" id="pk-{{ it.name | slugify }}" name="Items" value="{{ it.name }}"><span>{{ it.name }}</span></label>
+              {% endif %}{% endfor %}
+              </div>
+            </div>
+            {% endif %}{% endfor %}
             {% if holiday.show and holiday.add_to_order_form and holiday.claimed < holiday.total %}
-            <label><input type="checkbox" name="Items" value="{{ holiday.title }}"> {{ holiday.title }}</label>
+            <div class="pick-group"><p class="pick-h">Holiday</p><div class="pick-list"><label class="pick-item"><input type="checkbox" id="pk-{{ holiday.title | slugify }}" name="Items" value="{{ holiday.title }}"><span>{{ holiday.title }}</span></label></div></div>
             {% endif %}
           </div>
         </div>
-        <div class="field"><label for="qty">Quantity / size</label><input id="qty" name="Quantity" type="text" placeholder="e.g. 2 dozen biscotti, 1 dozen pizzelle" required></div>
-        <div class="field"><label for="flavour">Flavour(s)</label><input id="flavour" name="Flavours" type="text" placeholder="e.g. chocolate-dipped almond, lemon" required></div>
+        <div class="field full">
+          <span class="label-t" id="amt-label">2. How many, and which flavours?</span>
+          <div class="basket" role="group" aria-labelledby="amt-label">
+            <p class="basket-empty">Tick a treat above and it will appear here so you can add the quantity and flavour.</p>
+            {% set picked = [] %}
+            {% for g in menu.groups %}{% for it in g.items %}{% if it.available %}{% set picked = (picked.push(it.name), picked) %}{% endif %}{% endfor %}{% endfor %}
+            {% if holiday.show and holiday.add_to_order_form and holiday.claimed < holiday.total %}{% set picked = (picked.push(holiday.title), picked) %}{% endif %}
+            {% for n in picked %}{% set sid = n | slugify %}
+            <div class="basket-row br-{{ sid }}">
+              <p class="basket-name">{{ n }}</p>
+              <label><span class="sr">{{ n }} quantity</span><input type="text" name="{{ n }}: quantity" placeholder="Qty, e.g. 2 dozen" aria-describedby="amt-label" autocomplete="off"></label>
+              <label><span class="sr">{{ n }} flavour</span><input type="text" name="{{ n }}: flavour" placeholder="Flavour (optional)" autocomplete="off"></label>
+            </div>
+            {% endfor %}
+          </div>
+          <style>
+            @supports selector(:has(*)){
+              .basket-row{display:none}
+              {% for n in picked %}{% set sid = n | slugify %}form:has(#pk-{{ sid }}:checked) .br-{{ sid }}{display:grid}
+              {% endfor %}
+              form:has(.pick input:checked) .basket-empty{display:none}
+            }
+          </style>
+        </div>
         <div class="field"><label for="occasion">Occasion</label>
           <select id="occasion" name="Occasion">
             <option value="">Choose one (optional)</option>

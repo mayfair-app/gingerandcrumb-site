@@ -15,9 +15,11 @@ permalink: /index.html
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 {% include "styles.njk" %}
+{% include "motion.njk" %}
 </style>
 </head>
 <body>
+<div class="progress" aria-hidden="true"></div>
 
 {% if s.announcement.show %}<div class="announce">{{ s.announcement.text }} · <a href="#order">{{ s.announcement.link_text }}</a></div>{% endif %}
 
@@ -46,9 +48,10 @@ permalink: /index.html
 </a>
 {% endif %}
 
-<header class="hero gingham" id="top">
-  <div class="wrap">
-    <div class="paper scallop label">
+<header class="hero2 gingham" id="top">
+  <div class="hero2-in">
+    <div class="hero2-text">
+      <div class="paper scallop label">
       <div class="label-art">{% if s.logo %}<img src="{{ s.logo }}" alt="{{ s.business_name }} logo">{% elif s.hero_photo %}<img src="{{ s.hero_photo }}" alt="Fresh bakes from {{ s.business_name }}">{% else %}<svg viewBox="0 0 100 100" aria-hidden="true">{{ icons.cake | safe }}</svg>{% endif %}</div>
       <span class="tag">Home bakery · {{ loc }}</span>
       <h1>{{ s.hero_headline }} <em>{{ s.hero_highlight }}</em></h1>
@@ -56,6 +59,11 @@ permalink: /index.html
       <div class="ctas"><a class="btn" href="#order">Book your spot</a><a class="btn soft" href="#menu">See the menu</a></div>
       {% if availability.show and nextWeek %}<div class="booking"><span class="heart" aria-hidden="true">♥</span>Now booking {{ nextWeek.label }}{% if nextWeek.spots_left <= (nextWeek.spots_total / 2) %} · only {{ nextWeek.spots_left }} left{% endif %}</div>{% endif %}
       <ul class="ribbon">{% for b in s.hero_badges %}<li>{{ b }}</li>{% endfor %}</ul>
+      </div>
+    </div>
+    <div class="hero2-photo">
+      <div class="arch"><img src="/images/preview/amaretti-bowl.jpg" alt="A bowl of Italian amaretti cookies" width="1400" height="1750" fetchpriority="high"></div>
+      <svg class="sticker" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="stTop" d="M 30,100 A 70,70 0 0 1 170,100"/><path id="stBot" d="M 16,100 A 84,84 0 0 0 184,100"/></defs><circle cx="100" cy="100" r="98" fill="#c45a55"/><circle cx="100" cy="100" r="90" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5" stroke-dasharray="2 5"/><text font-family="Nunito,sans-serif" font-weight="900" font-size="15" letter-spacing="2.5" fill="#fff" text-anchor="middle"><textPath href="#stTop" startOffset="50%">BAKED TO ORDER</textPath></text><text font-family="Nunito,sans-serif" font-weight="900" font-size="15" letter-spacing="2.5" fill="#fff" text-anchor="middle"><textPath href="#stBot" startOffset="50%">MADE FROM SCRATCH</textPath></text><text x="17" y="105" font-size="13" fill="#fdd0cf" text-anchor="middle">♥</text><text x="183" y="105" font-size="13" fill="#fdd0cf" text-anchor="middle">♥</text><text x="100" y="114" text-anchor="middle" font-family="Gloock,serif" font-size="40" fill="#fff">G&amp;C</text></svg>
     </div>
   </div>
 </header>
@@ -65,6 +73,42 @@ permalink: /index.html
   <ul>{% for it in s.trust_items %}<li><svg viewBox="0 0 100 100" aria-hidden="true">{{ icons[it.icon or "heart"] | safe }}</svg>{{ it.text }}</li>{% endfor %}</ul>
 </section>
 {% endif %}
+
+{%- set cookieNames = [] -%}{%- for g in menu.groups -%}{%- for it in g.items -%}{%- if it.available -%}{%- set cookieNames = (cookieNames.push(it.name), cookieNames) -%}{%- endif -%}{%- endfor -%}{%- endfor -%}
+<div class="marquee" aria-label="What's baking">
+  <div class="marquee-track">
+    <ul>{% for n in cookieNames %}<li>{{ n }}</li>{% endfor %}</ul>
+    <ul aria-hidden="true">{% for n in cookieNames %}<li>{{ n }}</li>{% endfor %}</ul>
+  </div>
+</div>
+
+<section class="featured" aria-label="Favourites">
+  <div class="wrap">
+    <div class="feat-head"><span class="k">A little love in every batch</span><h2>Our favourites</h2></div>
+    <div class="feat-grid">
+      <a class="feat" href="#special"><span class="feat-img"><img src="/images/preview/gingerbread-flatlay.jpg" alt="Decorated holiday cookies" loading="lazy" width="933" height="1400"></span><span class="feat-body"><span class="feat-tag">Holiday</span><b>{{ holiday.title if holiday.show else "Holiday Cookie Box" }}</b><span>Gift-ready, tied with a ribbon</span><span class="feat-cta">Reserve yours →</span></span></a>
+      <a class="feat" href="#menu"><span class="feat-img"><img src="/images/preview/biscotti-orange.jpg" alt="Italian biscotti on a wooden board" loading="lazy" width="1400" height="934"></span><span class="feat-body"><span class="feat-tag">Italian</span><b>Italian cookie trays</b><span>Biscotti, amaretti, pizzelle and more</span><span class="feat-cta">See the menu →</span></span></a>
+      <a class="feat" href="#menu"><span class="feat-img"><img src="/images/preview/cheesecake-berries.jpg" alt="Cheesecake topped with berries" loading="lazy" width="1124" height="1400"></span><span class="feat-body"><span class="feat-tag">Celebrations</span><b>Cheesecakes</b><span>Classic, ricotta or seasonal</span><span class="feat-cta">See the menu →</span></span></a>
+    </div>
+  </div>
+</section>
+
+<section class="strip" aria-label="Fresh from the kitchen">
+  <h2 class="strip-title">The best things in life are <em>sweet</em></h2>
+  <div class="strip-row">
+    <div class="strip-track">
+      {%- set stripA = ["choc-chip-rack","cupcakes","gingerbread-cutting","cheesecake-slice","biscotti-jar","cookies-tray"] -%}
+      {%- set doodles = ["cookie","heart","cake","cupcake","ginger","box"] -%}
+      {% for pass in [1,2] %}{% for f in stripA %}<figure{% if pass == 2 %} aria-hidden="true"{% endif %}><img src="/images/preview/{{ f }}.jpg" alt="{% if pass == 1 %}Fresh bakes from Ginger &amp; Crumb{% endif %}" loading="lazy"></figure><span class="doodle" aria-hidden="true"><svg viewBox="0 0 100 100">{{ (icons[doodles[loop.index0]] or icons.heart) | safe }}</svg></span>{% endfor %}{% endfor %}
+    </div>
+  </div>
+  <div class="strip-row rev">
+    <div class="strip-track">
+      {%- set stripB = ["gingerbread-cozy","cookies-milk","cheesecake-berries","biscotti-orange","gingerbread-flatlay","cookie-stack"] -%}
+      {% for pass in [1,2] %}{% for f in stripB %}<figure aria-hidden="true"><img src="/images/preview/{{ f }}.jpg" alt="" loading="lazy"></figure>{% endfor %}{% endfor %}
+    </div>
+  </div>
+</section>
 
 <section class="about" aria-label="About" style="padding-top:60px">
   <div class="wrap"><div class="paper sheet">
@@ -124,6 +168,16 @@ permalink: /index.html
   </div></div>
 </section>
 {% endif %}
+
+<section class="celebrate" aria-label="Celebrate with Ginger &amp; Crumb">
+  <div class="celebrate-img"><img src="/images/preview/cupcakes.jpg" alt="Cupcakes with vanilla frosting" loading="lazy"></div>
+  <div class="celebrate-card paper scallop">
+    <span class="k">Showers · baptisms · weddings · birthdays</span>
+    <h2>Celebrate with something <em>sweet</em></h2>
+    <p>Dessert tables, cookie trays and custom treats, made from scratch for your big day.</p>
+    <a class="btn" href="#request">Plan your celebration</a>
+  </div>
+</section>
 
 <section id="request">
   <div class="wrap"><div class="paper sheet">
