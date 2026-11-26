@@ -34,11 +34,28 @@
             {% for g in menu.groups %}{% for it in g.items %}{% if it.available %}{% set picked = (picked.push(it.name), picked) %}{% endif %}{% endfor %}{% endfor %}
             {% if holiday.show and holiday.add_to_order_form and holiday.claimed < holiday.total %}{% set picked = (picked.push(holiday.title), picked) %}{% endif %}
             {% for n in picked %}{% set sid = n | slugify %}
+            {% if n == holiday.title %}
+            <div class="basket-row basket-box br-{{ sid }}">
+              <p class="basket-name">{{ n }}</p>
+              <label><span class="sr">{{ n }} number of boxes</span><input type="text" name="{{ n }}: number of boxes" placeholder="How many boxes?" autocomplete="off"></label>
+              <div class="box-picks">
+                <p class="box-picks-h">Pick the cookies for your box <span class="hint">(up to 6 flavours)</span></p>
+                {% for i in range(1, 7) %}
+                <label><span class="sr">Cookie choice {{ i }}</span><select name="{{ n }}: cookie {{ i }}">
+                  <option value="">Cookie {{ i }}</option>
+                  {% for g in menu.groups %}{% if g.title == "Cookies" or g.title == "Italian cookies" %}{% for c in g.items %}{% if c.available %}<option>{{ c.name }}</option>{% endif %}{% endfor %}{% endif %}{% endfor %}
+                  <option>Baker's choice</option>
+                </select></label>
+                {% endfor %}
+              </div>
+            </div>
+            {% else %}
             <div class="basket-row br-{{ sid }}">
               <p class="basket-name">{{ n }}</p>
               <label><span class="sr">{{ n }} quantity</span><input type="text" name="{{ n }}: quantity" placeholder="Qty, e.g. 2 dozen" aria-describedby="amt-label" autocomplete="off"></label>
               <label><span class="sr">{{ n }} flavour</span><input type="text" name="{{ n }}: flavour" placeholder="Flavour (optional)" autocomplete="off"></label>
             </div>
+            {% endif %}
             {% endfor %}
           </div>
           <style>

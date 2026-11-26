@@ -6,7 +6,7 @@
         {
           "name": "Classic chocolate chip",
           "description": "Brown butter, chunks of semi-sweet chocolate, flaky salt.",
-          "price": "$24 / dozen",
+          "price": "$18 / dozen",
           "icon": "cookie",
           "photo": "",
           "available": true
@@ -30,7 +30,7 @@
         {
           "name": "Chocolate crinkle cookies",
           "description": "Fudgy chocolate cookies rolled in icing sugar so they crackle as they bake.",
-          "price": "Ask for pricing",
+          "price": "$15 / dozen",
           "icon": "cookie",
           "photo": "",
           "available": true
@@ -38,7 +38,7 @@
         {
           "name": "Seasonal crinkle cookies",
           "description": "Our crinkle cookie in a rotating seasonal flavour. Ask what's on now.",
-          "price": "Ask for pricing",
+          "price": "$15 / dozen",
           "icon": "cookie",
           "photo": "",
           "available": true
@@ -46,7 +46,7 @@
         {
           "name": "Mini Egg cookies",
           "description": "Soft cookies loaded with candy-coated mini eggs.",
-          "price": "Ask for pricing",
+          "price": "$22 / dozen",
           "icon": "cookie",
           "photo": "",
           "available": true
@@ -54,7 +54,7 @@
         {
           "name": "Biscoff cookies",
           "description": "Soft cookies made with Biscoff cookie butter and crumbled Biscoff.",
-          "price": "Ask for pricing",
+          "price": "$22 / dozen",
           "icon": "cookie",
           "photo": "",
           "available": true
@@ -119,6 +119,14 @@
           "icon": "cookie",
           "photo": "",
           "available": true
+        },
+        {
+          "name": "Occhi di Bue",
+          "description": "Buttery shortbread sandwich cookies with a jam-filled window, dusted with icing sugar.",
+          "price": "Ask for pricing",
+          "icon": "cookie",
+          "photo": "",
+          "available": true
         }
       ]
     },
@@ -145,6 +153,14 @@
           "name": "Seasonal cheesecake",
           "description": "A rotating flavour, like pumpkin spice, chocolate or berry. Ask what's on now.",
           "price": "6\" $50 · 9\" $75",
+          "icon": "cake",
+          "photo": "",
+          "available": true
+        },
+        {
+          "name": "Mini cheesecakes",
+          "description": "Sold by the dozen. Choose original, Oreo, Mini Egg or Biscoff.",
+          "price": "Ask for pricing",
           "icon": "cake",
           "photo": "",
           "available": true

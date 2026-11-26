@@ -213,3 +213,8 @@ footer .cols{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;margin-
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:640px){.basket-row{grid-template-columns:1fr}}
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.basket-box{grid-template-columns:minmax(0,1.1fr) minmax(0,2.3fr)}
+.box-picks{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.box-picks-h{grid-column:1/-1;margin:4px 0 0;font-weight:800;font-size:.92rem}
+.box-picks select{width:100%}
+@media (max-width:640px){.basket-box{grid-template-columns:1fr}.box-picks{grid-template-columns:1fr}}
